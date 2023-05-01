@@ -39,6 +39,22 @@ class MealRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllGreaterThanPrice(int $price): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT * FROM meal p
+            ORDER BY p.price ASC
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+
 //    /**
 //     * @return Meal[] Returns an array of Meal objects
 //     */

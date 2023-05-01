@@ -33,6 +33,11 @@ class Category
         $this->meals = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getRangeNum() ." : ". $this->getCategoryName() ." ". $this->getSubCategory();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

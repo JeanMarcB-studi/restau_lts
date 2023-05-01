@@ -3601,16 +3601,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v5.4.22",
+            "version": "v5.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "e21648e71c579c9ccf5768e2484f79283c463535"
+                "reference": "ebdc48d54d82b74230a8aed6458c238ec5788e38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/e21648e71c579c9ccf5768e2484f79283c463535",
-                "reference": "e21648e71c579c9ccf5768e2484f79283c463535",
+                "url": "https://api.github.com/repos/symfony/form/zipball/ebdc48d54d82b74230a8aed6458c238ec5788e38",
+                "reference": "ebdc48d54d82b74230a8aed6458c238ec5788e38",
                 "shasum": ""
             },
             "require": {
@@ -3684,7 +3684,7 @@
             "description": "Allows to easily create, process and reuse HTML forms",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/form/tree/v5.4.22"
+                "source": "https://github.com/symfony/form/tree/v5.4.23"
             },
             "funding": [
                 {
@@ -3700,7 +3700,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-06T21:29:33+00:00"
+            "time": "2023-04-17T15:04:56+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -7379,16 +7379,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v5.4.22",
+            "version": "v5.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "7c953a48f436bb180d8f5ae471f2665d7dd245da"
+                "reference": "ca71f5562a3876a153250f638124b6b95452985f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/7c953a48f436bb180d8f5ae471f2665d7dd245da",
-                "reference": "7c953a48f436bb180d8f5ae471f2665d7dd245da",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/ca71f5562a3876a153250f638124b6b95452985f",
+                "reference": "ca71f5562a3876a153250f638124b6b95452985f",
                 "shasum": ""
             },
             "require": {
@@ -7472,7 +7472,7 @@
             "description": "Provides tools to validate values",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/validator/tree/v5.4.22"
+                "source": "https://github.com/symfony/validator/tree/v5.4.23"
             },
             "funding": [
                 {
@@ -7488,7 +7488,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-17T15:39:32+00:00"
+            "time": "2023-04-19T07:52:21+00:00"
         },
         {
             "name": "symfony/var-dumper",
