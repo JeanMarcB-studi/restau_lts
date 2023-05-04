@@ -1,0 +1,75 @@
+{% extends 'base_restau.html.twig' %}
+
+{% block title %}nos Menus{% endblock %}
+
+{% block body %}
+
+
+<div class="myImages">
+    <img src="{{ asset('ASSETS/data/homeRoom.jpg') }}" class="myImages" alt="mon image" srcset="">
+</div>
+
+<h1 class="text-center"> Nos Menus</h1>
+
+{# LOOP ON THE DIFFERENT MENUS -------------------------------------- #}
+{% for line in lines %}
+
+  <article class="text-center ">
+      <h2>
+          {{ line.getTitle }}
+      </h2>
+      <div>
+          {{ line.getType }}
+      </div>
+      <div>
+          {{ line.getValidWhen }}
+      </div>
+      <div>
+          {{ line.getDetail }}
+      </div>
+      <div>
+          {{ line.getPrice }} €
+      </div>
+  </article>
+
+{% endfor %}
+{# /LOOP ON THE DIFFERENT MENUS ------------------------------------- #}
+
+
+
+<div class="my-divider my-4"></div>
+
+<article class="container-fluid">
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-9 col-lg-6 px-5  ">
+      
+      <h2 class="mt-0 mb-2">
+        Mieux vaut réserver...
+      </h2>
+      <p>      
+      Attention, notre succès ne se dément pas et les places sont limitées ! Aussi, pensez à réserver dès maintenant pour être sûr de pouvoir profiter de cette expérience gastronomique unique. 
+      </p>
+    </div>
+  </div>
+
+  <div class="row justify-content-center ">
+    <div class="col text-center py-0">        
+      <!-- <a class="nav-link ps-2 pe-0 p-sm-2 mx-lg-3 myBtonBook" href="booking.php"> -->
+      <a class="bton nav-link d-block p-2 myBtonBook mx-auto" href="booking.php" role="button">
+        RESERVER
+      </a>
+    </div>
+  </div>      
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-9 col-lg-6 py-5 align-self-center myStickers">
+      <img src="ASSETS/IMG/logo.png" class="myImages w-100" alt="" srcset="">
+    </div>
+  </div>
+
+</article>
+
+
+
+{% endblock %}
