@@ -39,6 +39,23 @@ class MealRepository extends ServiceEntityRepository
         }
     }
 
+    public function queryAll(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT * 
+            FROM meal AS m
+            LEFT JOIN category AS c ON category_id = c.id 
+            ORDER BY c.range_num ASC, c.category_name ASC, c.sub_category ASC, m.meal_name ASC
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+    
     public function findAllGreaterThanPrice(int $price): array
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -53,7 +70,6 @@ class MealRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
-
 
 //    /**
 //     * @return Meal[] Returns an array of Meal objects

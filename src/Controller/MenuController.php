@@ -11,12 +11,13 @@ class MenuController extends AbstractController
 {
     #[Route('/menus', name: 'app_menu')]
 
-    public function titi(MenuRepository $MenuRepository): Response
+    public function index(MenuRepository $MenuRepository): Response
     {
 
-        return $this->render('page/menus.html.twig', [
+        return $this->render('page/menus.html.twig', 
+        [
             'controller_name' => 'MenuController',
-            'page' => $this->getCurrentPage(),
+            // 'page' => $this->getCurrentPage(),
             'lines' => $MenuRepository->findAll(),
         ]);
     }
@@ -25,11 +26,5 @@ class MenuController extends AbstractController
     {
         return $_SERVER["PHP_SELF"];
     }
-
-
-
-
-
-
 
 }

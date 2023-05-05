@@ -1,6 +1,6 @@
 {% extends 'base_restau.html.twig' %}
 
-{% block title %}nos Menus{% endblock %}
+{% block title %}notre Carte{% endblock %}
 
 {% block body %}
 
@@ -9,35 +9,43 @@
     <img src="{{ asset('ASSETS/data/homeRoom.jpg') }}" class="myImages" alt="mon image" srcset="">
 </div>
 
-<h1 class="text-center"> Nos Menus</h1>
+<h1 class="text-center">Notre Carte</h1>
 
 <div class="my-divider my-4"></div>
 
-{# LOOP ON THE DIFFERENT MENUS -------------------------------------- #}
+{# LOOP ON THE DIFFERENT MEALS -------------------------------------- #}
+{# "id, category_id, meal_name, description, price, category_name, sub_category, range_num" #}
+
+{# initialize rupture variable #}
+{% set rupture = '*' %}
+
+{# loop on Meals #}
 {% for line in lines %}
 
+  {# show category when and only when it has changed #}
+  {% if rupture != line.category_name %}
+    <h2>
+        {{ line.category_name }}
+        {{ line.sub_category }}
+    </h2>
+    {% set rupture = line.category_name %}
+  {% endif %}
+
+  {# show meal and detail #}
   <article class="text-center ">
-      <h2>
-          {{ line.getTitle }}
-      </h2>
       <div>
-          {{ line.getType }}
+          {{ line.meal_name }}
       </div>
       <div>
-          {{ line.getValidWhen }}
+          {{ line.description }}
       </div>
       <div>
-          {{ line.getDetail }}
-      </div>
-      <div>
-          {{ line.getPrice }} €
+          {{ line.price }} €
       </div>
   </article>
 
 {% endfor %}
-{# /LOOP ON THE DIFFERENT MENUS ------------------------------------- #}
-
-
+{# /LOOP ON THE DIFFERENT MEALS ------------------------------------- #}
 
 <div class="my-divider my-4"></div>
 
