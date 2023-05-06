@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\OpenHour;
+use App\Entity\OpenHour; 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

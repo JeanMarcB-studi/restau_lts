@@ -133,5 +133,9 @@
 </article>
 
 
+            {# SHOW NAV OPTIONS #}
+            {# {{ render(controller('App\\Controller\\NavController::getMenuItems')) }} #}
+            {{ render(controller('App\\Controller\\OpenHourController::openDays')) }}
+  {# {% include 'open.html.twig' %} #}
 
 {% endblock %}

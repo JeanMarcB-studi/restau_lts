@@ -7,18 +7,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class NavController extends AbstractController
 {
-    public function navBar(): Response
-    {
-        return $this->render('page/nav.html.twig', [
-            'menu_items' => $this->getMenuItems(),
-            'page' => $this->getCurrentPage(),
-        ]);
-    }
+    // public function navBar(): Response
+    // {
+    //     return $this->render('page/nav.html.twig', 
+    //     [
+    //         'menu_items' => $this->getMenuItems(),
+    //         'page' => $this->getCurrentPage(),
+    //     ]);
+    // }
 
-    private function getCurrentPage(): string
-    {
-        return $_SERVER["PHP_SELF"]."kk";
-    }
+    // private function getCurrentPage(): string
+    // {
+    //     return $_SERVER["PHP_SELF"]."kk";
+    // }
 
     public function getMenuItems() : Response
     {

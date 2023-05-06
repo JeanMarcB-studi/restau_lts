@@ -17,7 +17,6 @@ class MenuController extends AbstractController
         return $this->render('page/menus.html.twig', 
         [
             'controller_name' => 'MenuController',
-            // 'page' => $this->getCurrentPage(),
             'lines' => $MenuRepository->findAll(),
         ]);
     }
