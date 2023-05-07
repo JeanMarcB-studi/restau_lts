@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Repository\OpenHourRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+// use Symfony\Component\Routing\Annotation\Route;
 
 class OpenHourController extends AbstractController
 {
-    #[Route('/test', name: 'app_test')]
+    // #[Route('/test', name: 'app_test')]
 
     public function openDays(OpenHourRepository $OpenHourRepository): Response
     {

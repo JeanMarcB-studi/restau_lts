@@ -13,7 +13,6 @@ class PageController extends AbstractController
     {
         return $this->render('page/index.html.twig', [
             'controller_name' => 'PageController',
-            // 'menu_items' => $this->getMenuItems(),
         ]);
     }
 
