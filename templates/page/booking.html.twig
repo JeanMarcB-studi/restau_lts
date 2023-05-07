@@ -1,0 +1,128 @@
+{% extends 'base_restau.html.twig' %}
+
+{% block title %}Réservations{% endblock %}
+
+{% block body %}
+
+
+<div class="myImages">
+    <img src="{{ asset('ASSETS/data/homeRoom.jpg') }}" class="myImages" alt="mon image" srcset="">
+</div>
+
+<h1 class="text-center">Nos Menus</h1>
+
+<div class="my-divider my-4"></div>
+
+
+
+{# LOOP ON THE DIFFERENT MENUS -------------------------------------- #}
+{% for line in lines %}
+
+  <article class="text-center ">
+      <h2>
+          {{ line.weekDay }}
+      </h2>
+      <div>
+          {# {{ line.lunch_start }} #}
+      </div>
+      <div>
+          {# {{ line.lunch_end }} #}
+      </div>
+      <div>
+          {# {{ line.dinner_start }} #}
+      </div>
+      <div>
+          {# {{ line.dinner_end }} € #}
+      </div>
+  </article>
+
+{% endfor %}
+{# /LOOP ON THE DIFFERENT MENUS ------------------------------------- #}
+
+
+
+<div class="my-divider my-4"></div>
+
+<article class="container-sm g-2">
+
+  {# Nb of People and Date ------------------------------------------- #}
+  <div class="row mb-4">
+
+    <div class="col-6">
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="a1"><i class="bi bi-universal-access"></i></span>
+        <select class="form-select " id="inputGroupSelect01">
+          {# <option selected>nb couverts</option> #}
+          <option value="1">1 couvert</option>
+          <option selected value="2">2 couverts</option>
+          <option value="3">3 couverts</option>
+          <option value="4">4 couverts</option>
+          <option value="5">5 couverts</option>
+          <option value="6">6 couverts</option>
+          <option value="7">7 couverts</option>
+          <option value="8">8 couverts</option>
+          <option value="9">9 couverts</option>
+          <option value="0">si plus, téléphoner</option>
+        </select>
+      </div>
+    </div>    
+
+    <div class="col-6">
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="a2" ><i class="bi bi-caret-right"></i></span>
+        {# <span class="fa fa-calendar"  ></span> #}
+          {# <label for="book-date" class ="col-1">date :</label> #}
+          <input type="date" id="book-date" name="book-date" class="form-control" value="" min="{{ 'now'|date('d/m/Y') }}" max="">
+      </div>
+    </div>
+
+  </div> {# /row #}
+  
+
+  {% for k in ['MIDI','SOIR'] %}
+
+    <div class="row mx-0 mb-2 gx-0" id="{{ k }}">
+      <h2>
+        {{ k }}
+      </h2>
+    </div>
+
+    {% for j in 1..3 %}    
+      <div class="row text-center mx-0 mb-2 gx-0">
+        {% for i in 1..6 %}
+          <div class="col-2"><button class="">12:00</button></div>    
+        {% endfor %}    
+      </div> {# /row #}
+    {% endfor %}
+
+  {% endfor %}
+
+
+</article>
+
+
+
+
+
+
+<article>
+  <div class="row justify-content-center ">
+    <div class="col text-center py-5">        
+      <!-- <a class="nav-link ps-2 pe-0 p-sm-2 mx-lg-3 myBtonBook" href="booking.php"> -->
+      <a class="bton nav-link d-block p-2 myBtonBook mx-auto" href="booking.php" role="button">
+        RESERVER
+      </a>
+    </div>
+  </div>      
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-9 col-lg-6 py-5 align-self-center myStickers">
+      <img src="ASSETS/IMG/logo.png" class="myImages w-100" alt="" srcset="">
+    </div>
+  </div>
+
+</article>
+
+
+
+{% endblock %}
