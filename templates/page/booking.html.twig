@@ -9,36 +9,33 @@
     <img src="{{ asset('ASSETS/data/homeRoom.jpg') }}" class="myImages" alt="mon image" srcset="">
 </div>
 
-<h1 class="text-center">Nos Menus</h1>
+<h1 class="text-center">Réservation</h1>
 
 <div class="my-divider my-4"></div>
 
 
 
 {# LOOP ON THE DIFFERENT MENUS -------------------------------------- #}
-{% for line in lines %}
+{# {% for line in lines %} #}
 
   <article class="text-center ">
       <h2>
-          {{ line.weekDay }}
+          {# {{ line.weekDay }} #}
       </h2>
       <div>
           {# {{ line.lunch_start }} #}
       </div>
-      <div>
-          {# {{ line.lunch_end }} #}
-      </div>
-      <div>
-          {# {{ line.dinner_start }} #}
-      </div>
-      <div>
-          {# {{ line.dinner_end }} € #}
-      </div>
   </article>
 
-{% endfor %}
+{# {% endfor %} #}
 {# /LOOP ON THE DIFFERENT MENUS ------------------------------------- #}
 
+<pre>
+  {{ dump(tableReserv) }}
+</pre>        
+<pre>
+  {{ dump(weekDetail) }}
+</pre>
 
 
 <div class="my-divider my-4"></div>
@@ -52,7 +49,6 @@
       <div class="input-group flex-nowrap">
         <span class="input-group-text" id="a1"><i class="bi bi-universal-access"></i></span>
         <select class="form-select " id="inputGroupSelect01">
-          {# <option selected>nb couverts</option> #}
           <option value="1">1 couvert</option>
           <option selected value="2">2 couverts</option>
           <option value="3">3 couverts</option>
@@ -70,9 +66,9 @@
     <div class="col-6">
       <div class="input-group flex-nowrap">
         <span class="input-group-text" id="a2" ><i class="bi bi-caret-right"></i></span>
-        {# <span class="fa fa-calendar"  ></span> #}
-          {# <label for="book-date" class ="col-1">date :</label> #}
-          <input type="date" id="book-date" name="book-date" class="form-control" value="" min="{{ 'now'|date('d/m/Y') }}" max="">
+
+          <input type="date" id="book-date" name="book-date" class="form-control" value="{{ 'now'|date('Y-m-d') }}" min="{{ 'now'|date('Y-m-d') }}" max="{{ maxDate|date('Y-m-d') }}">
+          
       </div>
     </div>
 
@@ -102,9 +98,6 @@
 
 
 
-
-
-
 <article>
   <div class="row justify-content-center ">
     <div class="col text-center py-5">        
@@ -122,6 +115,11 @@
   </div>
 
 </article>
+
+
+  <script src="{{ asset('ASSETS/JVS/reserv.js') }}">
+    let data1 = ( {{ tableReserv|json_encode() }} )
+  </script>
 
 
 

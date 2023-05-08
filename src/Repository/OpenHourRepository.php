@@ -39,6 +39,25 @@ class OpenHourRepository extends ServiceEntityRepository
         }
     }
 
+    // public function getFullWeek(): array
+    // {
+    //     $conn = $this->getEntityManager()->getConnection();
+    
+    //     $sql = '
+    //         SELECT * 
+    //         FROM meal AS m
+    //         LEFT JOIN category AS c ON category_id = c.id 
+    //         ORDER BY c.range_num ASC, c.category_name ASC, c.sub_category ASC, m.meal_name ASC
+    //         ';
+    //     $stmt = $conn->prepare($sql);
+    //     $resultSet = $stmt->executeQuery();
+    
+    //     // returns an array of arrays (i.e. a raw data set)
+    //     return $resultSet->fetchAllAssociative();
+    // }
+        
+    
+
 //    /**
 //     * @return OpenHour[] Returns an array of OpenHour objects
 //     */

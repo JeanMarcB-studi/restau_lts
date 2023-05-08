@@ -1,7 +1,3 @@
-
-
-
-
 //STICKY CURTAIN EFFECT -----------------------------
 
 //init necessary data

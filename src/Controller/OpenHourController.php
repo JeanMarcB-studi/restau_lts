@@ -97,14 +97,14 @@ class OpenHourController extends AbstractController
 
         $line = '';
         // open for lunch?
-        if ($l_max0 > 0) {
+        //if ($l_max0 > 0) {
             $line .= "de $l_start0 à $l_end0";
-        }
+        //}
         // open for dinner?
-        if ($d_max0 > 0) {
+        //if ($d_max0 > 0) {
             $line .= empty($line) ? '' : ' et ';
             $line .= "de $d_start0 à $d_end0";
-        }
+        //}
         // day closed?
         $line = empty($line) ? 'fermé' : 'ouvert ' . $line;
         

@@ -39,6 +39,30 @@ class BookingRepository extends ServiceEntityRepository
         }
     }
 
+    public function queryAllFuture(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+    
+        $sql = '
+            SELECT booking_date, 
+            IF(booking_time > "17:00", "MIDI", "SOIR") AS lunch_or_dinner,
+            SUM(number_people) AS total_people
+            FROM booking
+            WHERE booking_date >= CURDATE()
+            GROUP BY 1, 2
+            ORDER BY 1 ASC, 2 DESC
+            ';
+
+            // $sql = 'SELECT number_people FROM booking'
+            // ;
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+    
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return Booking[] Returns an array of Booking objects
 //     */
