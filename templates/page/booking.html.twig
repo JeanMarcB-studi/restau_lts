@@ -30,14 +30,6 @@
 {# {% endfor %} #}
 {# /LOOP ON THE DIFFERENT MENUS ------------------------------------- #}
 
-<pre>
-  {{ dump(tableReserv) }}
-</pre>        
-<pre>
-  {{ dump(weekDetail) }}
-</pre>
-
-
 <div class="my-divider my-4"></div>
 
 <article class="container-sm g-2">
@@ -96,8 +88,6 @@
 
 </article>
 
-
-
 <article>
   <div class="row justify-content-center ">
     <div class="col text-center py-5">        
@@ -116,11 +106,22 @@
 
 </article>
 
+<pre>
+  {{ dump(remainSeats) }}
+</pre> 
+<pre>
+  {{ dump(weekDetail) }}
+</pre>
 
-  <script src="{{ asset('ASSETS/JVS/reserv.js') }}">
-    let data1 = ( {{ tableReserv|json_encode() }} )
-  </script>
+<div id="shareData" 
+data-week="{{ weekDetail|serialize(format = 'json') }}";
+data-remainSeats="{{ remainSeats|serialize(format = 'json') }}";
+data-test="coucou";
+>
+</div>
 
+<script src="{{ asset('ASSETS/JVS/reserv.js') }}">
+</script>
 
 
 {% endblock %}

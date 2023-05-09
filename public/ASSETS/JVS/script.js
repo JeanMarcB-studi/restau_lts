@@ -12,7 +12,7 @@ window.onscroll = () =>
 {
   // calculate Y position
   y = document.documentElement.scrollTop
-  console.log("Y: "+y)
+  //console.log("Y: "+y)
   
   // if I go down and header is visible :
   if (((y - startPos) > 100) && (y > lastPos) && (myHeadIsVisible)){

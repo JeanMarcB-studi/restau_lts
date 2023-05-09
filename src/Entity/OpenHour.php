@@ -35,6 +35,9 @@ class OpenHour
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $dinner_max = null;
 
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $day_num = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class OpenHour
     public function setDinnerMax(int $dinner_max): self
     {
         $this->dinner_max = $dinner_max;
+
+        return $this;
+    }
+
+    public function getDayNum(): ?int
+    {
+        return $this->day_num;
+    }
+
+    public function setDayNum(int $day_num): self
+    {
+        $this->day_num = $day_num;
 
         return $this;
     }
