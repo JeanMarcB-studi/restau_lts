@@ -66,20 +66,26 @@
 
   </div> {# /row #}
   
-
+  {# INIT THE HOURS GRID ----------------------------------  #}
   {% for k in ['MIDI','SOIR'] %}
 
+    {% set cpt = 0 %}
     <div class="row mx-0 mb-2 gx-0" id="{{ k }}">
       <h2>
         {{ k }}
       </h2>
     </div>
 
+    {# we want 3 lines #}
     {% for j in 1..3 %}    
       <div class="row text-center mx-0 mb-2 gx-0">
+
+        {# of 6 possibilities #}
         {% for i in 1..6 %}
-          <div class="col-2"><button class="">12:00</button></div>    
-        {% endfor %}    
+          {% set cpt = cpt + 1 %}
+          <div class="col-2"><button class="" id="{{ k }}{{ cpt }}">12:00</button></div>    
+        {% endfor %}   
+      
       </div> {# /row #}
     {% endfor %}
 
@@ -91,8 +97,7 @@
 <article>
   <div class="row justify-content-center ">
     <div class="col text-center py-5">        
-      <!-- <a class="nav-link ps-2 pe-0 p-sm-2 mx-lg-3 myBtonBook" href="booking.php"> -->
-      <a class="bton nav-link d-block p-2 myBtonBook mx-auto" href="booking.php" role="button">
+      <a class="bton nav-link d-block p-2 myBtonBook mx-auto" href="#" role="button">
         RESERVER
       </a>
     </div>
@@ -105,13 +110,13 @@
   </div>
 
 </article>
-
+{# 
 <pre>
   {{ dump(remainSeats) }}
 </pre> 
 <pre>
   {{ dump(weekDetail) }}
-</pre>
+</pre> #}
 
 <div id="shareData" 
 data-week="{{ weekDetail|serialize(format = 'json') }}";

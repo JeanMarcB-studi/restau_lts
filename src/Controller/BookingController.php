@@ -17,11 +17,8 @@ class BookingController extends AbstractController
         return $this->render('page/booking.html.twig', 
         [
             'maxDate' => $this->maxDate(),
-            // 'tableReserv' => $this->tableReserv($BookingRepository),
             'remainSeats' => $this->remainSeats($BookingRepository, $OpenHourRepository),
-            'weekDetail' => $OpenHourRepository->findAll(),
-            // 'wr' => $this->getWeekRoom($OpenHourRepository),
-            
+            'weekDetail' => $OpenHourRepository->findAll(),            
         ]);
     }
     
@@ -33,20 +30,6 @@ class BookingController extends AbstractController
     }
 
 
-// CALCULATE NB OF FREE SEATS BY DAY BY MEAL ON 1 WEEK
-    public function getWeekRoom(OpenHourRepository $OpenHourRepository)
-    {
-        $fullWeek = $OpenHourRepository->findAll();
-        $room = array();
-        $dayNum = 0;
-
-        foreach($fullWeek as $day){
-            $dayNum++;
-            $room[$dayNum]['MIDI'] = $day->getLunchMax();
-            $room[$dayNum]['SOIR'] = $day->getDinnerMax();
-        }
-        return $room;
-    }
 
 // PREPARE CALENDAR FOR 3 WEEKS WITH RESERVATIONS DONE INCLUDED
     public function tableReserv(BookingRepository $BookingRepository)
@@ -60,7 +43,9 @@ class BookingController extends AbstractController
         for ($i = 0; $i < 21; $i++ ){
             $elt['date'] = $date->format("Y-m-d");
             $elt['dayNum'] = (int) $date->format("N");
+            $elt['seats'] = 0;
             $elt['reserved'] = 0;
+            $elt['available'] = 0;
             
             $elt['mealTime'] = 'MIDI';
             $reserv[] = $elt;
@@ -79,12 +64,28 @@ class BookingController extends AbstractController
                 if ($el['date'] === $booking['booking_date']
                 and $el['mealTime'] === $booking['lunch_or_dinner']) {
 
-                    $reserv[$key]['reserved'] -= (int) $booking['total_people'];
+                    $reserv[$key]['reserved'] += (int) $booking['total_people'];
                 }
                 // dump($booking['total_people']);
             }
         }
         return $reserv;
+    }
+
+    
+// CALCULATE NB OF FREE SEATS BY DAY BY MEAL ON 1 WEEK
+    public function getWeekRoom(OpenHourRepository $OpenHourRepository)
+    {
+        $fullWeek = $OpenHourRepository->findAll();
+        $room = array();
+        $dayNum = 0;
+
+        foreach($fullWeek as $day){
+            $dayNum++;
+            $room[$dayNum]['MIDI'] = $day->getLunchMax();
+            $room[$dayNum]['SOIR'] = $day->getDinnerMax();
+        }
+        return $room;
     }
 
 // COMBINE TO CALCULATE FREE SEATS BY DAY AND BY MEAL ON 3 WEEKS 
@@ -93,7 +94,9 @@ class BookingController extends AbstractController
         $reserv = $this->tableReserv($BookingRepository);
         
         foreach($reserv as $key =>$elt){
-            $reserv[$key]['reserved'] += (int) $weekRoom[$elt['dayNum']][$elt['mealTime']];
+            // $reserv[$key]['reserved'] += (int) $weekRoom[$elt['dayNum']][$elt['mealTime']];
+            $reserv[$key]['seats'] += (int) $weekRoom[$elt['dayNum']][$elt['mealTime']];
+            $reserv[$key]['available'] = $reserv[$key]['seats'] - $reserv[$key]['reserved'];
         }
         return $reserv;
     }
