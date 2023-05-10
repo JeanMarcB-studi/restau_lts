@@ -16,14 +16,14 @@ window.onscroll = () =>
   
   // if I go down and header is visible :
   if (((y - startPos) > 100) && (y > lastPos) && (myHeadIsVisible)){
-    console.log("on descend, remonter le bandeau")
+    // console.log("on descend, remonter le bandeau")
     myHead.classList.add('myHeadMove')
     myHeadIsVisible = false;
   } 
   else
   // if I go up and header is still not visible :
   if ((y < lastPos) && (!myHeadIsVisible)){
-    console.log("on remonte, afficher le bandeau")
+    // console.log("on remonte, afficher le bandeau")
     myHead.classList.remove('myHeadMove')
     myHeadIsVisible = true;
   }

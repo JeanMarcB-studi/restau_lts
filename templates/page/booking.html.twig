@@ -70,7 +70,7 @@
   {% for k in ['MIDI','SOIR'] %}
 
     {% set cpt = 0 %}
-    <div class="row mx-0 mb-2 gx-0" id="{{ k }}">
+    <div class="row mx-0 mb-2 gx-0 selectQuarters" id="{{ k }}">
       <h2>
         {{ k }}
       </h2>
@@ -78,7 +78,13 @@
 
     <div class="row text-center" id="{{ k }}closed">
       <h3 class="col mb-4">
-        Le Restaurant est fermé
+        Le Restaurant est fermé.
+      </h3>
+    </div>
+
+    <div class="row text-center" id="{{ k }}full">
+      <h3 class="col mb-4">
+        Tout est déjà réservé.
       </h3>
     </div>
 
@@ -90,7 +96,7 @@
           {# of 6 possibilities #}
           {% for i in 1..6 %}
             {% set cpt = cpt + 1 %}
-            <div class="col-2"><button class="" id="{{ k }}{{ cpt }}">12:00</button></div>    
+            <div class="col-2"><button class="btonQuarter" id="{{ k }}{{ cpt }}">12:00</button></div>    
           {% endfor %}   
         
         </div> {# /row #}
@@ -104,6 +110,11 @@
 
 <article>
   <div class="row justify-content-center ">
+    
+    <div class="col text-center py-5 h1" id="reservHour">        
+      ??:??
+    </div>      
+    
     <div class="col text-center py-5">        
       <a class="bton nav-link d-block p-2 myBtonBook mx-auto" href="#" role="button">
         RESERVER
@@ -129,7 +140,6 @@
 <div id="shareData" 
 data-week="{{ weekDetail|serialize(format = 'json') }}";
 data-remainSeats="{{ remainSeats|serialize(format = 'json') }}";
-data-test="coucou";
 >
 </div>
 
