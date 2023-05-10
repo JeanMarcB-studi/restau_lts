@@ -76,18 +76,26 @@
       </h2>
     </div>
 
-    {# we want 3 lines #}
-    {% for j in 1..3 %}    
-      <div class="row text-center mx-0 mb-2 gx-0">
+    <div class="row text-center" id="{{ k }}closed">
+      <h3 class="col mb-4">
+        Le Restaurant est fermé
+      </h3>
+    </div>
 
-        {# of 6 possibilities #}
-        {% for i in 1..6 %}
-          {% set cpt = cpt + 1 %}
-          <div class="col-2"><button class="" id="{{ k }}{{ cpt }}">12:00</button></div>    
-        {% endfor %}   
-      
-      </div> {# /row #}
-    {% endfor %}
+    <div class="container-fluid" id="{{ k }}quarters">
+      {# we want 3 lines #}
+      {% for j in 1..3 %}    
+        <div class="row text-center mx-0 mb-2 gx-0">
+
+          {# of 6 possibilities #}
+          {% for i in 1..6 %}
+            {% set cpt = cpt + 1 %}
+            <div class="col-2"><button class="" id="{{ k }}{{ cpt }}">12:00</button></div>    
+          {% endfor %}   
+        
+        </div> {# /row #}
+      {% endfor %}
+    </div>
 
   {% endfor %}
 
