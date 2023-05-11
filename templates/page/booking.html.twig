@@ -10,74 +10,43 @@
 </div>
 
 <h1 class="text-center">Réservation</h1>
-
-<div class="my-divider my-4"></div>
-
-
-
-{# LOOP ON THE DIFFERENT MENUS -------------------------------------- #}
-{# {% for line in lines %} #}
-
-  <article class="text-center ">
-      <h2>
-          {# {{ line.weekDay }} #}
-      </h2>
-      <div>
-          {# {{ line.lunch_start }} #}
-      </div>
-  </article>
-
-{# {% endfor %} #}
-{# /LOOP ON THE DIFFERENT MENUS ------------------------------------- #}
-
 <div class="my-divider my-4"></div>
 
 <form action="{{ path('app_booking_handle') }}"  class="container-sm g-2 myWidth" method="post" name="form_booking">
 
 
 
-<div class="row g-3">
+  <div class="row g-3">
     <div class="col-md-6">
       <label for="firstname" class="form-label">Prénom :</label>
-      <input type="text" class="form-control" name="firstName" id="firstName" label="firstname" placeholder="votre Prénom ?">
-      <div class="invalid-feedback">
-        Veuillez saisir votre prénom.
-      </div>
+      <input type="text" class="form-control" name="firstName" id="firstName" label="firstname"   placeholder="votre Prénom ?">
+      <div class="invalid-feedback">Veuillez saisir votre prénom.</div>
     </div>
     
     <div class="col-md-6">
       <label for="lastname" class="form-label">Nom :</label>
       <input type="text" class="form-control" name="lastName" id="lastName" label="name" placeholder="votre Nom ?">
-      <div class="invalid-feedback">
-        Veuillez saisir votre nom.
-      </div>
+      <div class="invalid-feedback">Veuillez saisir votre nom.</div>
     </div>
 
     <div class="col-md-6">
       <label for="email" class="form-label">E-mail :</label>
       <input type="email" class="form-control" name="email" id="email" placeholder="votre Email ?">
-      <div class="invalid-feedback">
-        Veuillez saisir votre e-mail.
-      </div>
+      <div class="invalid-feedback">Veuillez saisir votre e-mail.</div>
     </div>
     
     <div class="col-md-6">
       <label for="phoneNumber" class="form-label">Téléphone :</label>
       <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="votre No de téléphone ?">
-      <div class="invalid-feedback">
-        Veuillez saisir votre numéro de téléphone.
-      </div>
+      <div class="invalid-feedback">Veuillez saisir votre numéro de téléphone.</div>
     </div>
 
-  {# Nb of People and Date ------------------------------------------- #}
-      {# 
-      <input type="email" class="form-control" name="email" id="email" placeholder="votre Email ?">
-      #}
+    {# Nb of People and Date ------------------------------------------- #}
     <div class="col-md-6">
       <label for="seats" class="form-label">Nombre de couverts :</label>
       <div class="input-group flex-nowrap">
           <span class="input-group-text" id="a1"><i class="bi bi-universal-access"></i></span>
-          <select class="form-select " id="inputGroupSelect01">
+          <select class="form-select"  id="seats" >
             <option value="1">1 couvert</option>
             <option selected value="2">2 couverts</option>
             <option value="3">3 couverts</option>
@@ -93,16 +62,10 @@
     </div>
     
     <div class="col-md-6">
-      {# 
-      <input type="email" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="votre No de téléphone ?">
-      <div class="invalid-feedback">
-        Veuillez saisir votre numéro de téléphone.
-      </div> #}
-
       <label for="phoneNumber" class="form-label">Pour quelle date :</label>
-    <div class="input-group flex-nowrap mb-3">
-      <span class="input-group-text" id="a2" ><i class="bi bi-caret-right"></i></span>
-        <input type="date" id="book-date" name="book-date" class="form-control" value="{{ 'now'|date('Y-m-d') }}" min="{{ 'now'|date('Y-m-d') }}" max="{{ maxDate|date('Y-m-d') }}">
+      <div class="input-group flex-nowrap mb-3">
+        <span class="input-group-text" id="a2" ><i class="bi bi-caret-right"></i></span>
+          <input type="date" id="book-date" name="book-date" class="form-control" value="{{ 'now'|date('Y-m-d') }}" min="{{ 'now'|date('Y-m-d') }}" max="{{ maxDate|date('Y-m-d') }}">
       </div>
     </div>
   </div> {# /row #}
@@ -125,7 +88,7 @@
 
     <div class="row text-center" id="{{ k }}full">
       <h3 class="col mb-4">
-        Tout est déjà réservé.
+        Toutes les places sont réservées.
       </h3>
     </div>
 
@@ -137,34 +100,27 @@
           {# of 6 possibilities #}
           {% for i in 1..6 %}
             {% set cpt = cpt + 1 %}
-            {# <div class="col-2"><div class="btonQuarter m-1 rounded-2 p-1" id="{{ k }}{{ cpt }}">12:00</div></div>     #}
             <div class="col-2">
               <input type="button" class="btonQuarter m-1 rounded-2 p-1" id="{{ k }}{{ cpt }}">
-              {# </input> #}
-            </div>    
+            </div>   
+          {% endfor %} 
 
-          {% endfor %}   
-        
         </div> {# /row #}
       {% endfor %}
     </div>
 
   {% endfor %}
-
+  {#end INIT THE HOURS GRID ----------------------------------  #}
 
     
-    <!-- Message input -->
-    <div class="form-outline mb-1">
-      <label for="message" class="form-label">Un message ?</label>
-      <textarea class="form-control py-0 lh-1 mb-3" id="message" name="message" rows="6" placeholder="
-        Merci de nous communiquer ici le nombre d'enfants à table s'il y en a, si vous avez des allergies ou un régime particulier, ou toute autre information utile pour vous recevoir dans les meilleures conditions...
-        ">
-      </textarea>
- 
-</div>
-
-
-
+  {# Message input #}
+  <div class="form-outline mb-1">
+    <label for="message" class="form-label">Un message ?</label>
+    <textarea class="form-control py-0 lh-1 mb-3" id="message" name="message" rows="6" placeholder="
+      Merci de nous communiquer ici le nombre d'enfants à table s'il y en a, si vous avez des allergies ou un régime particulier, ou toute autre information utile pour vous recevoir dans les meilleures conditions...
+      ">
+    </textarea> 
+  </div>
 
   <div>
     <div class="row justify-content-center ">
@@ -174,9 +130,9 @@
       <div class="col text-center py-5">        
         <input  type="submit" value ="RESERVER" class="bton nav-link d-block p-2 myBtonBook mx-auto" href="#" role="button" >
       </div>
-    </div>      
-
+    </div>
   </div>
+
 </form>
 {# 
 <pre>
@@ -187,8 +143,8 @@
 </pre> #}
 
 <div id="shareData" 
-data-week="{{ weekDetail|serialize(format = 'json') }}";
-data-remainSeats="{{ remainSeats|serialize(format = 'json') }}";
+  data-week="{{ weekDetail|serialize(format = 'json') }}";
+  data-remainSeats="{{ remainSeats|serialize(format = 'json') }}";
 >
 </div>
 
