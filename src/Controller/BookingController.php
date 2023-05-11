@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Booking;
 use App\Repository\BookingRepository;
 use App\Repository\OpenHourRepository;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookingController extends AbstractController
 {
     #[Route('/booking', name: 'app_booking')]
-    public function index(OpenHourRepository $OpenHourRepository,BookingRepository $BookingRepository): Response
+    public function index(OpenHourRepository $OpenHourRepository, BookingRepository $BookingRepository): Response
     {        
         return $this->render('page/booking.html.twig', 
         [
@@ -23,35 +24,61 @@ class BookingController extends AbstractController
         ]);
     }
     
-    #[Route('/booking/handle', name: 'app_booking_handle')]
-    public function handleForm(Request $request): Response
+    #[Route('/booking/handle', name: 'app_booking_handle' , methods: ['GET', 'POST'])]
+    public function handleForm(Request $request, BookingRepository $BookingRepository): Response
     {
+        
         // dd($request->request);
+        $req = $request->request;
+        
+        try {
+        $bookDate = new \DateTime($req->get('book-date'));
+        $hour = new \DateTime($req->get('book-date')." ".$req->get('hour'));
+        $seats =  (int)$req->get('seats');
+        $firstName = ucwords(strtolower(trim($req->get('firstName'))));
+        $lastName = strtoupper(trim($req->get('lastName')));
+        $email = trim($req->get('email'));
+        $phoneNumber = trim($req->get('phoneNumber'));
+        $message = trim($req->get('message'));
+        $today = new \DateTime();
+        
+        $booking = new Booking();
+        $booking->setBookingTime($hour);
+        $booking->setBookingDate($bookDate);
+        $booking->setNumberPeople($seats);
+        $booking->setFirstName($firstName);
+        $booking->setLastName($lastName);
+        $booking->setComment($message);
+        $booking->setCreationDate($today);
+        $booking->setEmail($email);
+        $booking->setPhone($phoneNumber);
+        
+        $valid ="Mme/M. $firstName $lastName, votre réservation pour le $bookDate";
 
-        dd($request->request);
-        $myDate = $request->request->get('book-date');
-        dd($myDate);
+        // dd($booking);
 
-        // $booking = new Booking();
-        // $booking->setBookingDate();
 
-        // $bookingRepository->save($booking, true);
-
-        // return $this->redirectToRoute('app_booking_controller_in_index', [], Response::HTTP_SEE_OTHER);
+            $BookingRepository->save($booking, true);
+            // return $this->redirectToRoute('app_booking_controller_in_index', [], Response::HTTP_SEE_OTHER);
+            return $this->render('page/bookingOK.html.twig', ['toto' => 'titi'
+        ]);
+    }       
+    catch (Exception $e) {
+        // dd($e->getMessage());
+        return $this->render('page/bookingOK.html.twig', ['toto' => 'titi'     ]);
+            // return $this->redirectToRoute('app_booking', [], Response::HTTP_SEE_OTHER);
+            // return $this->render('page/booking.html.twig');
+        }
     }
-
-
-
+    
+    
+    
     private function maxDate() 
     {
         $today = new \DateTime();
         $max = $today->add(new \DateInterval('P21D'));
         return $max;
     }
-
-
-
-
 
 // PREPARE CALENDAR FOR 3 WEEKS WITH RESERVATIONS DONE INCLUDED
     private function tableReserv(BookingRepository $BookingRepository)

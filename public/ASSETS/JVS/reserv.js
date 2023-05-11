@@ -6,10 +6,19 @@ const bookHour = document.querySelector("#reservHour")
 const bookSeat = document.querySelector("#seats")
 const btonsQrs = document.querySelectorAll(".btonQuarter")
 
+const btonPost = document.querySelector("#submit")
+
 let remainSeats
 let weekHours
 let day = {}
 let nbSeatsReserved 
+
+btonPost.addEventListener('click', (e) => {
+  console.clear()
+  console.log("start CONTROLS...")
+
+}, true)
+
 
 
 //----- GET DATA COMING FROM <- TWIG <- CONTROLLER <- REPO

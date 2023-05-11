@@ -38,6 +38,12 @@ class Booking
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $creation_date = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $phone = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,6 +141,30 @@ class Booking
     public function setCreationDate(\DateTimeInterface $creation_date): self
     {
         $this->creation_date = $creation_date;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

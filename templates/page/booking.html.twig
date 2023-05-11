@@ -6,13 +6,13 @@
 
 
 <div class="myImages">
-    <img src="{{ asset('ASSETS/data/homeRoom.jpg') }}" class="myImages" alt="mon image" srcset="">
+    <img src="{{ asset('ASSETS/data/bookingHead.jpg') }}" class="myImages" alt="mon image" srcset="">
 </div>
 
 <h1 class="text-center">Réservation</h1>
 <div class="my-divider my-4"></div>
 
-<form action="{{ path('app_booking_handle') }}"  class="container-sm g-2 myWidth" method="post" name="form_booking">
+<form action="{{ path('app_booking_handle') }}"  class="container-sm g-2 myWidth border" method="post" name="form_booking">
 
 
 
@@ -46,7 +46,7 @@
       <label for="seats" class="form-label">Nombre de couverts :</label>
       <div class="input-group flex-nowrap">
           <span class="input-group-text" id="a1"><i class="bi bi-universal-access"></i></span>
-          <select class="form-select"  id="seats" >
+          <select class="form-select" id="seats" name ='seats'>
             <option value="1">1 couvert</option>
             <option selected value="2">2 couverts</option>
             <option value="3">3 couverts</option>
@@ -128,7 +128,7 @@
       <input class="col text-center h1 m-5" readonly id="reservHour" name ="hour" value="??:??">        
 {# button to submit form       #}
       <div class="col text-center py-5">        
-        <input  type="submit" value ="RESERVER" class="bton nav-link d-block p-2 myBtonBook mx-auto" href="#" role="button" >
+        <input  type="submit" id="submit" value ="RESERVER" class="bton nav-link d-block p-2 myBtonBook mx-auto" href="#" role="button" >
       </div>
     </div>
   </div>
@@ -149,11 +149,11 @@
 </div>
 
 {# logo #}
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-9 col-lg-6 py-5 align-self-center myStickers">
-      <img src="ASSETS/IMG/logo.png" class="myImages w-100" alt="" srcset="">
-    </div>
+<div class="row justify-content-center">
+  <div class="col-12 col-sm-9 col-lg-6 py-5 align-self-center myStickers">
+    <img src="ASSETS/IMG/logo.png" class="myImages w-100" alt="" srcset="">
   </div>
+</div>
 
 <script src="{{ asset('ASSETS/JVS/reserv.js') }}">
 </script>
