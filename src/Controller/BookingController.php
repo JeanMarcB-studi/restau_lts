@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
 use App\Repository\BookingRepository;
 use App\Repository\OpenHourRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BookingController extends AbstractController
 {
     #[Route('/booking', name: 'app_booking')]
-
     public function index(OpenHourRepository $OpenHourRepository,BookingRepository $BookingRepository): Response
     {        
         return $this->render('page/booking.html.twig', 
@@ -22,6 +23,25 @@ class BookingController extends AbstractController
         ]);
     }
     
+    #[Route('/booking/handle', name: 'app_booking_handle')]
+    public function handleForm(Request $request): Response
+    {
+        // dd($request->request);
+
+        dd($request->request);
+        $myDate = $request->request->get('book-date');
+        dd($myDate);
+
+        // $booking = new Booking();
+        // $booking->setBookingDate();
+
+        // $bookingRepository->save($booking, true);
+
+        // return $this->redirectToRoute('app_booking_controller_in_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+
     private function maxDate() 
     {
         $today = new \DateTime();
@@ -31,8 +51,10 @@ class BookingController extends AbstractController
 
 
 
+
+
 // PREPARE CALENDAR FOR 3 WEEKS WITH RESERVATIONS DONE INCLUDED
-    public function tableReserv(BookingRepository $BookingRepository)
+    private function tableReserv(BookingRepository $BookingRepository)
     {
         $date = new \DateTime();
         
@@ -74,7 +96,7 @@ class BookingController extends AbstractController
 
     
 // CALCULATE NB OF FREE SEATS BY DAY BY MEAL ON 1 WEEK
-    public function getWeekRoom(OpenHourRepository $OpenHourRepository)
+    private function getWeekRoom(OpenHourRepository $OpenHourRepository)
     {
         $fullWeek = $OpenHourRepository->findAll();
         $room = array();
@@ -89,7 +111,7 @@ class BookingController extends AbstractController
     }
 
 // COMBINE TO CALCULATE FREE SEATS BY DAY AND BY MEAL ON 3 WEEKS 
-    public function remainSeats(BookingRepository $BookingRepository, OpenHourRepository $OpenHourRepository){
+    private function remainSeats(BookingRepository $BookingRepository, OpenHourRepository $OpenHourRepository){
         $weekRoom = $this->getWeekRoom($OpenHourRepository);
         $reserv = $this->tableReserv($BookingRepository);
         

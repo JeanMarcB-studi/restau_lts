@@ -104,3 +104,8 @@
 .myHeadMove{
   top: -100%;
 }
+.btonQuarter{
+  border: 1px darkgreen solid;
+  
+  /* background-color: red; */
+}

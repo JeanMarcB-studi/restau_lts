@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Booking;
 use App\Entity\Category;
 use App\Entity\Meal;
 use App\Entity\Menu;
@@ -50,5 +51,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Menus', 'fas fa-list', Menu::class);
         yield MenuItem::linkToCrud('Les plats de la carte', 'fas fa-list', Meal::class);
         yield MenuItem::linkToCrud('Catégories de plats', 'fas fa-list', Category::class);
+        yield MenuItem::linkToCrud('les Réservations', 'fas fa-list', Booking::class);
     }
 }

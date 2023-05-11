@@ -32,45 +32,86 @@
 
 <div class="my-divider my-4"></div>
 
-<article class="container-sm g-2">
+<form action="{{ path('app_booking_handle') }}"  class="container-sm g-2 myWidth" method="post" name="form_booking">
 
-  {# Nb of People and Date ------------------------------------------- #}
-  <div class="row mb-4">
 
-    <div class="col-6">
-      <div class="input-group flex-nowrap">
-        <span class="input-group-text" id="a1"><i class="bi bi-universal-access"></i></span>
-        <select class="form-select " id="inputGroupSelect01">
-          <option value="1">1 couvert</option>
-          <option selected value="2">2 couverts</option>
-          <option value="3">3 couverts</option>
-          <option value="4">4 couverts</option>
-          <option value="5">5 couverts</option>
-          <option value="6">6 couverts</option>
-          <option value="7">7 couverts</option>
-          <option value="8">8 couverts</option>
-          <option value="9">9 couverts</option>
-          <option value="0">si plus, téléphoner</option>
-        </select>
+
+<div class="row g-3">
+    <div class="col-md-6">
+      <label for="firstname" class="form-label">Prénom :</label>
+      <input type="text" class="form-control" name="firstName" id="firstName" label="firstname" placeholder="votre Prénom ?">
+      <div class="invalid-feedback">
+        Veuillez saisir votre prénom.
       </div>
-    </div>    
-
-    <div class="col-6">
-      <div class="input-group flex-nowrap">
-        <span class="input-group-text" id="a2" ><i class="bi bi-caret-right"></i></span>
-
-          <input type="date" id="book-date" name="book-date" class="form-control" value="{{ 'now'|date('Y-m-d') }}" min="{{ 'now'|date('Y-m-d') }}" max="{{ maxDate|date('Y-m-d') }}">
-          
+    </div>
+    
+    <div class="col-md-6">
+      <label for="lastname" class="form-label">Nom :</label>
+      <input type="text" class="form-control" name="lastName" id="lastName" label="name" placeholder="votre Nom ?">
+      <div class="invalid-feedback">
+        Veuillez saisir votre nom.
       </div>
     </div>
 
+    <div class="col-md-6">
+      <label for="email" class="form-label">E-mail :</label>
+      <input type="email" class="form-control" name="email" id="email" placeholder="votre Email ?">
+      <div class="invalid-feedback">
+        Veuillez saisir votre e-mail.
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <label for="phoneNumber" class="form-label">Téléphone :</label>
+      <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="votre No de téléphone ?">
+      <div class="invalid-feedback">
+        Veuillez saisir votre numéro de téléphone.
+      </div>
+    </div>
+
+  {# Nb of People and Date ------------------------------------------- #}
+      {# 
+      <input type="email" class="form-control" name="email" id="email" placeholder="votre Email ?">
+      #}
+    <div class="col-md-6">
+      <label for="seats" class="form-label">Nombre de couverts :</label>
+      <div class="input-group flex-nowrap">
+          <span class="input-group-text" id="a1"><i class="bi bi-universal-access"></i></span>
+          <select class="form-select " id="inputGroupSelect01">
+            <option value="1">1 couvert</option>
+            <option selected value="2">2 couverts</option>
+            <option value="3">3 couverts</option>
+            <option value="4">4 couverts</option>
+            <option value="5">5 couverts</option>
+            <option value="6">6 couverts</option>
+            <option value="7">7 couverts</option>
+            <option value="8">8 couverts</option>
+            <option value="9">9 couverts</option>
+            <option value="0">si plus, téléphoner</option>
+          </select>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      {# 
+      <input type="email" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="votre No de téléphone ?">
+      <div class="invalid-feedback">
+        Veuillez saisir votre numéro de téléphone.
+      </div> #}
+
+      <label for="phoneNumber" class="form-label">Pour quelle date :</label>
+    <div class="input-group flex-nowrap mb-3">
+      <span class="input-group-text" id="a2" ><i class="bi bi-caret-right"></i></span>
+        <input type="date" id="book-date" name="book-date" class="form-control" value="{{ 'now'|date('Y-m-d') }}" min="{{ 'now'|date('Y-m-d') }}" max="{{ maxDate|date('Y-m-d') }}">
+      </div>
+    </div>
   </div> {# /row #}
   
   {# INIT THE HOURS GRID ----------------------------------  #}
   {% for k in ['MIDI','SOIR'] %}
 
     {% set cpt = 0 %}
-    <div class="row mx-0 mb-2 gx-0 selectQuarters" id="{{ k }}">
+    <div class="row mx-0 mb-1 gx-0 selectQuarters" id="{{ k }}">
       <h2>
         {{ k }}
       </h2>
@@ -96,7 +137,12 @@
           {# of 6 possibilities #}
           {% for i in 1..6 %}
             {% set cpt = cpt + 1 %}
-            <div class="col-2"><button class="btonQuarter" id="{{ k }}{{ cpt }}">12:00</button></div>    
+            {# <div class="col-2"><div class="btonQuarter m-1 rounded-2 p-1" id="{{ k }}{{ cpt }}">12:00</div></div>     #}
+            <div class="col-2">
+              <input type="button" class="btonQuarter m-1 rounded-2 p-1" id="{{ k }}{{ cpt }}">
+              {# </input> #}
+            </div>    
+
           {% endfor %}   
         
         </div> {# /row #}
@@ -106,29 +152,32 @@
   {% endfor %}
 
 
-</article>
-
-<article>
-  <div class="row justify-content-center ">
     
-    <div class="col text-center py-5 h1" id="reservHour">        
-      ??:??
+    <!-- Message input -->
+    <div class="form-outline mb-1">
+      <label for="message" class="form-label">Un message ?</label>
+      <textarea class="form-control py-0 lh-1 mb-3" id="message" name="message" rows="6" placeholder="
+        Merci de nous communiquer ici le nombre d'enfants à table s'il y en a, si vous avez des allergies ou un régime particulier, ou toute autre information utile pour vous recevoir dans les meilleures conditions...
+        ">
+      </textarea>
+ 
+</div>
+
+
+
+
+  <div>
+    <div class="row justify-content-center ">
+{# store the hour #}
+      <input class="col text-center h1 m-5" readonly id="reservHour" name ="hour" value="??:??">        
+{# button to submit form       #}
+      <div class="col text-center py-5">        
+        <input  type="submit" value ="RESERVER" class="bton nav-link d-block p-2 myBtonBook mx-auto" href="#" role="button" >
+      </div>
     </div>      
-    
-    <div class="col text-center py-5">        
-      <a class="bton nav-link d-block p-2 myBtonBook mx-auto" href="#" role="button">
-        RESERVER
-      </a>
-    </div>
-  </div>      
 
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-9 col-lg-6 py-5 align-self-center myStickers">
-      <img src="ASSETS/IMG/logo.png" class="myImages w-100" alt="" srcset="">
-    </div>
   </div>
-
-</article>
+</form>
 {# 
 <pre>
   {{ dump(remainSeats) }}
@@ -142,6 +191,13 @@ data-week="{{ weekDetail|serialize(format = 'json') }}";
 data-remainSeats="{{ remainSeats|serialize(format = 'json') }}";
 >
 </div>
+
+{# logo #}
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-9 col-lg-6 py-5 align-self-center myStickers">
+      <img src="ASSETS/IMG/logo.png" class="myImages w-100" alt="" srcset="">
+    </div>
+  </div>
 
 <script src="{{ asset('ASSETS/JVS/reserv.js') }}">
 </script>

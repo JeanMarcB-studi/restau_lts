@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booking index{% endblock %}
+
+{% block body %}
+    <h1>Booking index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Booking_date</th>
+                <th>Booking_time</th>
+                <th>Number_people</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>Comment</th>
+                <th>Creation_date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.bookingDate ? booking.bookingDate|date('Y-m-d') : '' }}</td>
+                <td>{{ booking.bookingTime ? booking.bookingTime|date('H:i:s') : '' }}</td>
+                <td>{{ booking.numberPeople }}</td>
+                <td>{{ booking.firstName }}</td>
+                <td>{{ booking.lastName }}</td>
+                <td>{{ booking.comment }}</td>
+                <td>{{ booking.creationDate ? booking.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_booking_controller_in_show', {'id': booking.id}) }}">show</a>
+                    <a href="{{ path('app_booking_controller_in_edit', {'id': booking.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_booking_controller_in_new') }}">Create new</a>
+{% endblock %}

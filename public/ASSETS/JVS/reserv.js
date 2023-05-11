@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   btonsQr.forEach(btonQr => {
     btonQr.addEventListener('click', (e) => {
-        console.log('clic')
-        bookHour.textContent = e.target.textContent
+        console.log('clic ' + e.target.value)
+        bookHour.value = e.target.value
       })
   });
 
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 bookDate.addEventListener('change', (e) => {
   dateNew = e.target.value
   updateHours(dateNew)
+  bookHour.value ='??:??'
 })
 
 
@@ -129,7 +130,8 @@ updateHours = (dateChoice) => {
         // console.log("meal+cpt = " + meal+cpt);
         // showHour = startHour.getHours() + ":" + startHour.getMinutes()
         bton = document.getElementById(meal+cpt)
-        bton.textContent = showHour(startHour)
+        // bton.textContent = showHour(startHour)
+        bton.value = showHour(startHour)
         bton.style.display = "block"
 
         startHour.setMinutes( startHour.getMinutes() + 15) 
