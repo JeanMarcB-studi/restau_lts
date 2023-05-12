@@ -12,9 +12,8 @@
 <h1 class="text-center">Réservation</h1>
 <div class="my-divider my-4"></div>
 
-<form action="{{ path('app_booking_handle') }}"  class="container-sm g-2 myWidth border" method="post" name="form_booking">
-
-
+{# ----------------------------- F O R M --------------------------------- #}
+<form action="{{ path('app_booking_handle') }}"  class="container-sm g-2 myWidth border" method="post" name="form_booking" id="bookForm">
 
   <div class="row g-3">
     <div class="col-md-6">
@@ -58,14 +57,17 @@
             <option value="9">9 couverts</option>
             <option value="0">si plus, téléphoner</option>
           </select>
+          <div class="invalid-feedback">Pour plus de 9 personnes, merci de téléphoner.</div>
       </div>
     </div>
     
     <div class="col-md-6">
-      <label for="phoneNumber" class="form-label">Pour quelle date :</label>
+      <label for="book-date" class="form-label">Pour quelle date :</label>
       <div class="input-group flex-nowrap mb-3">
         <span class="input-group-text" id="a2" ><i class="bi bi-caret-right"></i></span>
-          <input type="date" id="book-date" name="book-date" class="form-control" value="{{ 'now'|date('Y-m-d') }}" min="{{ 'now'|date('Y-m-d') }}" max="{{ maxDate|date('Y-m-d') }}">
+          <input type="date" id="book-date" name="book-date" class="form-control" value="{{ 'now'|date('Y-m-d') }}" min="{{ 'now'|date('Y-m-d') }}" max="{{ maxDate|date('Y-m-d') }} required">
+          <div class="invalid-feedback"></div>
+
       </div>
     </div>
   </div> {# /row #}
@@ -116,22 +118,50 @@
   {# Message input #}
   <div class="form-outline mb-1">
     <label for="message" class="form-label">Un message ?</label>
-    <textarea class="form-control py-0 lh-1 mb-3" id="message" name="message" rows="6" placeholder="
-      Merci de nous communiquer ici le nombre d'enfants à table s'il y en a, si vous avez des allergies ou un régime particulier, ou toute autre information utile pour vous recevoir dans les meilleures conditions...
-      ">
-    </textarea> 
+    <textarea class="form-control py-0 lh-1 mb-3" id="message" name="message" rows="3" placeholder="
+      Merci de nous communiquer ici le nombre d'enfants à table s'il y en a, si vous avez des allergies ou un régime particulier, ou toute autre information utile pour vous recevoir dans les meilleures conditions...">
+    </textarea>
+    <div class="invalid-feedback">Votre message est trop long (250 caractères max)</div> 
   </div>
 
-  <div>
-    <div class="row justify-content-center ">
-{# store the hour #}
-      <input class="col text-center h1 m-5" readonly id="reservHour" name ="hour" value="??:??">        
-{# button to submit form       #}
-      <div class="col text-center py-5">        
-        <input  type="submit" id="submit" value ="RESERVER" class="bton nav-link d-block p-2 myBtonBook mx-auto" href="#" role="button" >
+  {# <div> #}
+    {# <div class="row justify-content-center "> #}
+
+      <div class="row g-3">
+
+        {# store the hour #}
+        <div class="col-md-6 border g-0 p-0">
+          <label for="reservHour" class="form-label">Créneau choisi :</label>
+          <input type ="text" class="form-control text-center h1 m-0" readonly id="reservHour" name ="hour" value="??:??">
+          <div class="invalid-feedback">Sélectionner une heure</div> 
+        </div>
+
+        {# <div class="col-md-6">
+          <label for="firstname" class="form-label">Prénom :</label>
+          <input type="text" class="form-control" name="firstName" id="firstName" label="firstname"   placeholder="votre Prénom ?">
+          <div class="invalid-feedback">Veuillez saisir votre prénom.</div>
+        </div> #}
+
+
+        <div class="col-md-6 border">
+          {# <label for="firstname" class="form-label">Prénom :</label> #}
+          {# <input class="col text-center h1 m-5" readonly id="reservHour" name ="hour" value="??:??"> #}
+            <input  type="button" id="submit" value ="RESERVER" class="bton nav-link d-block p-2 myBtonBook mx-auto col" href="#" role="button" >
+        </div>
       </div>
-    </div>
-  </div>
+    {# </div> #}
+  {# </div> #}
+
+
+
+
+
+
+
+{# button to submit form       #}
+      {# <div class="col text-center py-5">        
+      </div> #}
+  {# </div> #}
 
 </form>
 {# 
@@ -157,6 +187,9 @@
 
 <script src="{{ asset('ASSETS/JVS/reserv.js') }}">
 </script>
+<script src="{{ asset('ASSETS/JVS/formValid.js') }}">
+</script>
+
 
 
 {% endblock %}

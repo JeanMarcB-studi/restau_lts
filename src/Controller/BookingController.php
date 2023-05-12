@@ -53,19 +53,23 @@ class BookingController extends AbstractController
         $booking->setEmail($email);
         $booking->setPhone($phoneNumber);
         
-        $valid ="Mme/M. $firstName $lastName, votre réservation pour le $bookDate";
+         // dd($booking);
 
-        // dd($booking);
-
-
-            $BookingRepository->save($booking, true);
+        $BookingRepository->save($booking, true);
             // return $this->redirectToRoute('app_booking_controller_in_index', [], Response::HTTP_SEE_OTHER);
-            return $this->render('page/bookingOK.html.twig', ['toto' => 'titi'
-        ]);
-    }       
-    catch (Exception $e) {
-        // dd($e->getMessage());
-        return $this->render('page/bookingOK.html.twig', ['toto' => 'titi'     ]);
+
+            return $this->render('page/bookingOK.html.twig', [
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+                'bookDate' => $bookDate->format("d/m/Y"),
+                'bookHour' => $hour->format("H:i"),
+                'seats' => $seats,
+            ]);
+        }       
+        catch (Exception $e) {
+            // dd($e->getMessage());
+            return $this->render('page/bookingOK.html.twig', []);
+        // return $this->render('page/bookingOK.html.twig', ['toto' => 'titi'     ]);
             // return $this->redirectToRoute('app_booking', [], Response::HTTP_SEE_OTHER);
             // return $this->render('page/booking.html.twig');
         }
