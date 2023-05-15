@@ -5,13 +5,15 @@ const bookDate = document.querySelector("#book-date")
 const bookHour = document.querySelector("#reservHour")
 const bookSeat = document.querySelector("#seats")
 const btonsQrs = document.querySelectorAll(".btonQuarter")
+const reserved = document.querySelector('#reserved')
 
 
-let remainSeats
+let bookCalendar
 let weekHours
 let day = {}
+let dateNew =''
 let nbSeatsReserved 
-
+let hourReserved
 
 
 //----- GET DATA COMING FROM <- TWIG <- CONTROLLER <- REPO
@@ -21,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
   weekHours = JSON.parse(myData.dataset.week)
 
   // remaining nb of seats on next 3 weeks
-  remainSeats = JSON.parse(myData.dataset.remainseats)
+  bookCalendar = JSON.parse(myData.dataset.bookcalendar)
   
   // initialize date Part for quarters pickers
   dateStart = bookDate.value
@@ -30,13 +32,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   btonsQrs.forEach(btonQr => {
     btonQr.addEventListener('click', (e) => {
-        console.log('clic ' + e.target.value)
-        bookHour.value = e.target.value
+        clickHour(e.target.value)
       })
-  });
-})
+    });
+  })
+  
+  // 
+  clickHour = (timeBooking) => {
+  console.log('clic ' +  timeBooking)
+  hourReserved = timeBooking
+  bookHour.value = timeBooking
+  console.log(bookDate)
+  reserved.innerHTML = day.dateExtended + "<br> à " + hourReserved
+}
 
-// NB SEATS CHANGED? FOR NO SURBOOKING: UPDATE NB SEATS AVAILABLE
+// NB SEATS CHANGED BY CUSTOMER? FOR NO SURBOOKING: UPDATE NB SEATS AVAILABLE
 bookSeat.addEventListener('change', (e) => {
   console.log('seat'+e.target.value)
   nbSeatsReserved = bookSeat.value
@@ -50,30 +60,36 @@ bookDate.addEventListener('change', (e) => {
   updateHours(dateNew)
 })
 
-// UPDATE QUARTER HOURS
+// UPDATE SHOW OF QUARTER HOURS
 updateHours = (dateChoice) => {
   console.log("dateChoice = " + dateChoice);
-  bookHour.value ='??:??'
+  bookHour.value =''
   
-  //look for the date in the file coming from Controller
+  //search for the date in the file coming from Controller
   let nb = 0
-  for(elt in remainSeats){
-    if (remainSeats[elt].date === dateChoice){
+  for(elt in bookCalendar){
+    if (bookCalendar[elt].date === dateChoice){
       day.date = dateChoice
 
-      nb = parseInt(elt)
-      console.log(remainSeats[nb])
-      console.log("num jour sur 3 semaines = " + nb);
-      console.log("remainSeats[nb].mealTime = " + remainSeats[nb].mealTime);
+      day.dateExtended = new Date(dateChoice).toLocaleDateString('fr-FR', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
+      console.log('coucou')
+      console.log("dd= "+day.dateExtended)
 
-      day.lunchSeats = remainSeats[nb].seats
-      day.lunchAvailable = remainSeats[nb].available
-      day.dayNum = remainSeats[nb].dayNum
+      nb = parseInt(elt)
+      console.log(bookCalendar[nb])
+      console.log("num jour sur 3 semaines = " + nb);
+      console.log("bookCalendar[nb].mealTime = " + bookCalendar[nb].mealTime);
+
+      day.lunchSeats = bookCalendar[nb].seats
+      day.lunchAvailable = bookCalendar[nb].available
+      day.dayNum = bookCalendar[nb].dayNum
+      day.weekDay = weekHours[day.dayNum -1].weekDay
+      console.log(day.weekDay)
 
       console.log("day.dayNum = " + day.dayNum);
       console.log(weekHours)
       
-      if (remainSeats[nb].mealTime === 'MIDI') {
+      if (bookCalendar[nb].mealTime === 'MIDI') {
         startHour = new Date(weekHours[day.dayNum - 1].lunchStart)
         endHour = new Date(weekHours[day.dayNum - 1].lunchEnd)
         
@@ -84,14 +100,14 @@ updateHours = (dateChoice) => {
 
     console.log (day)
 
-    hideQuarters(remainSeats[nb].mealTime)
+    hideQuarters(bookCalendar[nb].mealTime)
 
     showQuarters(
-      remainSeats[nb].mealTime,
+      bookCalendar[nb].mealTime,
       startHour,
       endHour,
-      remainSeats[nb].seats != 0,
-      remainSeats[nb].available - nbSeatsReserved > 0
+      bookCalendar[nb].seats != 0,
+      bookCalendar[nb].available - nbSeatsReserved > 0
       )      
     }    
   }

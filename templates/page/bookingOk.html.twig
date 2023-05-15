@@ -1,0 +1,47 @@
+{% extends 'base_restau.html.twig' %}
+
+{% block title %}Bienvenue au Quai Antique{% endblock %}
+
+{% block body %}
+
+
+
+<div class="myImages">
+    {# <img src="{{ asset('ASSETS/data/homeRoom.jpg') }}" class="myImages" alt="mon image" srcset=""> #}
+</div>
+
+
+
+<div class="my-divider my-4"></div>
+<div class="my-divider my-4"></div>
+
+<article class="container-fluid my-5">
+  
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-9 col-lg-6 px-5  ">
+    
+    <h1 class="mt-0 mb-2">
+      Réservation enregistrée
+    </h1>
+
+    <div class="my-3">
+      {# SHOW BOOKING DETAIL #}
+      {# {{ detail|raw }} #}
+      Chers Mme/M. {{ firstName }} {{ lastName }}, <br><br>
+      votre réservation pour le : <span>{{ bookDate }}</span> à {{ bookHour }} <br>
+      pour {{ seats }} personnes est bien enregistrée.
+    </div>
+    
+    <div>
+      Nous vous attendons avec impatience pour vous faire découvrir (ou redécouvrir) les saveurs de la Savoie à travers la cuisine du Chef Arno Mi-Chang. 
+    </div>
+
+    </div>
+  </div>
+
+</article>
+
+<div class="my-divider my-4"></div>
+
+
+{% endblock %}

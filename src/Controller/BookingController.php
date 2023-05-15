@@ -19,7 +19,7 @@ class BookingController extends AbstractController
         return $this->render('page/booking.html.twig', 
         [
             'maxDate' => $this->maxDate(),
-            'remainSeats' => $this->remainSeats($BookingRepository, $OpenHourRepository),
+            'bookCalendar' => $this->bookCalendar($BookingRepository, $OpenHourRepository),
             'weekDetail' => $OpenHourRepository->findAll(),            
         ]);
     }
@@ -142,7 +142,7 @@ class BookingController extends AbstractController
     }
 
 // COMBINE TO CALCULATE FREE SEATS BY DAY AND BY MEAL ON 3 WEEKS 
-    private function remainSeats(BookingRepository $BookingRepository, OpenHourRepository $OpenHourRepository){
+    private function bookCalendar(BookingRepository $BookingRepository, OpenHourRepository $OpenHourRepository){
         $weekRoom = $this->getWeekRoom($OpenHourRepository);
         $reserv = $this->tableReserv($BookingRepository);
         

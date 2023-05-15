@@ -19,54 +19,54 @@
     <div class="col-md-6">
       <label for="firstname" class="form-label">Prénom :</label>
       <input type="text" class="form-control" name="firstName" id="firstName" label="firstname"   placeholder="votre Prénom ?">
-      <div class="invalid-feedback">Veuillez saisir votre prénom.</div>
-    </div>
+    <div class="invalid-feedback">Veuillez saisir votre prénom.</div>
+  </div>
     
-    <div class="col-md-6">
-      <label for="lastname" class="form-label">Nom :</label>
-      <input type="text" class="form-control" name="lastName" id="lastName" label="name" placeholder="votre Nom ?">
-      <div class="invalid-feedback">Veuillez saisir votre nom.</div>
-    </div>
+  <div class="col-md-6">
+    <label for="lastname" class="form-label">Nom :</label>
+    <input type="text" class="form-control" name="lastName" id="lastName" label="name" placeholder="votre Nom ?">
+    <div class="invalid-feedback">Veuillez saisir votre nom.</div>
+  </div>
 
-    <div class="col-md-6">
-      <label for="email" class="form-label">E-mail :</label>
-      <input type="email" class="form-control" name="email" id="email" placeholder="votre Email ?">
-      <div class="invalid-feedback">Veuillez saisir votre e-mail.</div>
-    </div>
-    
-    <div class="col-md-6">
-      <label for="phoneNumber" class="form-label">Téléphone :</label>
-      <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="votre No de téléphone ?">
-      <div class="invalid-feedback">Veuillez saisir votre numéro de téléphone.</div>
-    </div>
+  <div class="col-md-6">
+    <label for="email" class="form-label">E-mail :</label>
+    <input type="email" class="form-control" name="email" id="email" placeholder="votre Email ?">
+    <div class="invalid-feedback">Veuillez saisir votre e-mail.</div>
+  </div>
+  
+  <div class="col-md-6">
+    <label for="phoneNumber" class="form-label">Téléphone :</label>
+    <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="votre No de téléphone ?">
+    <div class="invalid-feedback">Veuillez saisir votre numéro de téléphone.</div>
+  </div>
 
-    {# Nb of People and Date ------------------------------------------- #}
-    <div class="col-md-6">
-      <label for="seats" class="form-label">Nombre de couverts :</label>
-      <div class="input-group flex-nowrap">
-          <span class="input-group-text" id="a1"><i class="bi bi-universal-access"></i></span>
-          <select class="form-select" id="seats" name ='seats'>
-            <option value="1">1 couvert</option>
-            <option selected value="2">2 couverts</option>
-            <option value="3">3 couverts</option>
-            <option value="4">4 couverts</option>
-            <option value="5">5 couverts</option>
-            <option value="6">6 couverts</option>
-            <option value="7">7 couverts</option>
-            <option value="8">8 couverts</option>
-            <option value="9">9 couverts</option>
-            <option value="0">si plus, téléphoner</option>
-          </select>
-          <div class="invalid-feedback">Pour plus de 9 personnes, merci de téléphoner.</div>
-      </div>
+  {# Nb of People and Date ------------------------------------------- #}
+  <div class="col-md-6">
+    <label for="seats" class="form-label">Nombre de couverts :</label>
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="a1"><i class="bi bi-universal-access"></i></span>
+        <select class="form-select" id="seats" name ='seats'>
+          <option value="1">1 couvert</option>
+          <option selected value="2">2 couverts</option>
+          <option value="3">3 couverts</option>
+          <option value="4">4 couverts</option>
+          <option value="5">5 couverts</option>
+          <option value="6">6 couverts</option>
+          <option value="7">7 couverts</option>
+          <option value="8">8 couverts</option>
+          <option value="9">9 couverts</option>
+          <option value="0">si plus, téléphoner</option>
+        </select>
+        <div class="invalid-feedback">Pour plus de 9 personnes, merci de téléphoner.</div>
     </div>
-    
-    <div class="col-md-6">
-      <label for="book-date" class="form-label">Pour quelle date :</label>
-      <div class="input-group flex-nowrap mb-3">
-        <span class="input-group-text" id="a2" ><i class="bi bi-caret-right"></i></span>
-          <input type="date" id="book-date" name="book-date" class="form-control" value="{{ 'now'|date('Y-m-d') }}" min="{{ 'now'|date('Y-m-d') }}" max="{{ maxDate|date('Y-m-d') }} required">
-          <div class="invalid-feedback"></div>
+  </div>
+  
+  <div class="col-md-6">
+    <label for="book-date" class="form-label">Pour quelle date :</label>
+    <div class="input-group flex-nowrap mb-3">
+      <span class="input-group-text" id="a2" ><i class="bi bi-caret-right"></i></span>
+        <input type="date" id="book-date" name="book-date" class="form-control" value="{{ 'now'|date('Y-m-d') }}" min="{{ 'now'|date('Y-m-d') }}" max="{{ maxDate|date('Y-m-d') }} required">
+        <div class="invalid-feedback"></div>
 
       </div>
     </div>
@@ -94,6 +94,7 @@
       </h3>
     </div>
 
+    {# show the Quarters GRID #}
     <div class="container-fluid" id="{{ k }}quarters">
       {# we want 3 lines #}
       {% for j in 1..3 %}    
@@ -112,10 +113,17 @@
     </div>
 
   {% endfor %}
+
+  {# store the hour (hidden) for Export within the Form #}
+  <input type ="text" class="" hidden id="reservHour" name ="hour" value="">
+  <div class="invalid-feedback">Il faut sélectionner une heure de réservation</div> 
+
   {#end INIT THE HOURS GRID ----------------------------------  #}
 
     
   {# Message input #}
+  <div class="row">
+  <div class="col">
   <div class="form-outline mb-1">
     <label for="message" class="form-label">Un message ?</label>
     <textarea class="form-control py-0 lh-1 mb-3" id="message" name="message" rows="3" placeholder="
@@ -123,50 +131,29 @@
     </textarea>
     <div class="invalid-feedback">Votre message est trop long (250 caractères max)</div> 
   </div>
-
-  {# <div> #}
-    {# <div class="row justify-content-center "> #}
-
-      <div class="row g-3">
-
-        {# store the hour #}
-        <div class="col-md-6 border g-0 p-0">
-          <label for="reservHour" class="form-label">Créneau choisi :</label>
-          <input type ="text" class="form-control text-center h1 m-0" readonly id="reservHour" name ="hour" value="??:??">
-          <div class="invalid-feedback">Sélectionner une heure</div> 
-        </div>
-
-        {# <div class="col-md-6">
-          <label for="firstname" class="form-label">Prénom :</label>
-          <input type="text" class="form-control" name="firstName" id="firstName" label="firstname"   placeholder="votre Prénom ?">
-          <div class="invalid-feedback">Veuillez saisir votre prénom.</div>
-        </div> #}
+  </div>
+  </div>
 
 
-        <div class="col-md-6 border">
-          {# <label for="firstname" class="form-label">Prénom :</label> #}
-          {# <input class="col text-center h1 m-5" readonly id="reservHour" name ="hour" value="??:??"> #}
-            <input  type="button" id="submit" value ="RESERVER" class="bton nav-link d-block p-2 myBtonBook mx-auto col" href="#" role="button" >
-        </div>
-      </div>
-    {# </div> #}
-  {# </div> #}
+  <div class="row g-0 ">
 
+    <div class="col-md-6  p-2"> 
+      {# show the day and hour of reservation for control 'in extenso' #}
+      <h2 id="reserved" class="text-center"></h2>
+    </div>
 
+    {# Button to reserve #}
+    <div class="col-md-6 p-4">
+        <input  type="button" id="submit" value ="RESERVER" class="bton nav-link d-block p-2 myBtonBook mx-auto " href="#" role="button" >
+    </div>
+  </div>
 
-
-
-
-
-{# button to submit form       #}
-      {# <div class="col text-center py-5">        
-      </div> #}
-  {# </div> #}
 
 </form>
+
 {# 
 <pre>
-  {{ dump(remainSeats) }}
+  {{ dump(bookCalendar) }}
 </pre> 
 <pre>
   {{ dump(weekDetail) }}
@@ -174,7 +161,7 @@
 
 <div id="shareData" 
   data-week="{{ weekDetail|serialize(format = 'json') }}";
-  data-remainSeats="{{ remainSeats|serialize(format = 'json') }}";
+  data-bookCalendar="{{ bookCalendar|serialize(format = 'json') }}";
 >
 </div>
 
