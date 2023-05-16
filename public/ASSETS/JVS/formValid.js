@@ -109,7 +109,8 @@ function validateFields(input) {
     }
     
     case "book-date" :{
-        return(true)
+        return(checkDate(input))
+        // return(true)
     }
     
     case "message" :{
@@ -129,7 +130,15 @@ function validateFields(input) {
 
 //=== END - FIELDS VALIDATION  ===//
 
-// Checking Regex values
+// Check Date
+function checkDate(input) {
+    let date = new Date(input.value)    
+    console.log("date = " + date);
+    console.log("dateMin = " + dateMin);
+    return(date >= dateMin && date <= dateMax)
+}
+
+// Check Regex values
 function checkFormat(input, regex){
     return input.value.match(regex);
 }

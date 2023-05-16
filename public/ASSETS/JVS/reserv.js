@@ -6,14 +6,25 @@ const bookHour = document.querySelector("#reservHour")
 const bookSeat = document.querySelector("#seats")
 const btonsQrs = document.querySelectorAll(".btonQuarter")
 const reserved = document.querySelector('#reserved')
+const quarters = document.querySelector('#quarters')
 
 
+let dateMin = new Date()
+let dateMax = new Date()
 let bookCalendar
 let weekHours
 let day = {}
 let dateNew =''
 let nbSeatsReserved 
 let hourReserved
+
+dateMin.setHours(0,0,0)
+dateMax.setDate(dateMax.getDate() + 21)
+dateMax.setHours(23,59,59)
+
+console.log("les dates :")
+console.log(dateMin.toISOString())
+console.log(dateMax.toISOString())
 
 
 //----- GET DATA COMING FROM <- TWIG <- CONTROLLER <- REPO
@@ -57,6 +68,7 @@ bookSeat.addEventListener('change', (e) => {
 // DATE IS CHANGED? MAKE ALL QUARTER UPDATES
 bookDate.addEventListener('change', (e) => {
   dateNew = e.target.value
+  reserved.innerHTML =''
   updateHours(dateNew)
 })
 
@@ -67,6 +79,7 @@ updateHours = (dateChoice) => {
   
   //search for the date in the file coming from Controller
   let nb = 0
+  quarters.style.display = "block"
   for(elt in bookCalendar){
     if (bookCalendar[elt].date === dateChoice){
       day.date = dateChoice
@@ -110,6 +123,10 @@ updateHours = (dateChoice) => {
       bookCalendar[nb].available - nbSeatsReserved > 0
       )      
     }    
+  }
+  if (nb === 0){
+    console.log("pbbbbbbbbbbbbbbbb")
+    quarters.style.display = "none"
   }
 }
 
