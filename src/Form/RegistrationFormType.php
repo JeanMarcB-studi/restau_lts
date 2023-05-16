@@ -29,16 +29,16 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
 */
-            ->add('first_name' ,TextType::class, [
+            ->add('first_name', TextType::class, [
                 'label' => 'Votre prénom'
             ])
 
-            ->add('last_name' ,TextType::class, [
+            ->add('last_name', TextType::class, [
                 'label' => 'Votre Nom'
             ])
 
-            ->add('comment' ,TextType::class, [
-                'label' => 'Commentaire'
+            ->add('comment', TextType::class, [
+                'label' => 'Commentaire : allergies, régime spécial...'
             ])
 
             ->add('plainPassword', PasswordType::class, [
@@ -48,11 +48,11 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit faire au minimum {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

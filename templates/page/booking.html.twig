@@ -5,6 +5,11 @@
 {% block body %}
 
 
+<pre>
+  {{ dump(user) }}
+</pre>
+ {{ user.firstName }} 
+
 <div class="myImages">
     <img src="{{ asset('ASSETS/data/bookingHead.jpg') }}" class="myImages" alt="mon image" srcset="">
 </div>
@@ -18,7 +23,7 @@
   <div class="row g-3">
     <div class="col-md-6">
       <label for="firstname" class="form-label">Prénom :</label>
-      <input type="text" class="form-control" name="firstName" id="firstName" label="firstname"   placeholder="votre Prénom ?">
+      <input type="text" class="form-control" name="firstName" id="firstName" label="firstname"   placeholder="votre Prénom ?" value="{{ user.firstName }}">
     <div class="invalid-feedback">Veuillez saisir votre prénom.</div>
   </div>
     
@@ -154,6 +159,9 @@
 
 </form>
 
+<pre>
+  {{ dump(user) }}
+</pre>
 {# 
 <pre>
   {{ dump(bookCalendar) }}

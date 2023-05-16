@@ -14,7 +14,8 @@ class NavController extends AbstractController
             '/' => 'Accueil',
             '/carte' => 'notre Carte',
             '/menus' => 'nos Menus',
-            '/booking' => 'RESERVER'
+            '/booking' => 'RESERVER',
+            '/login' => 'cx'
         ];
         
         //determine on which Page we currently are 

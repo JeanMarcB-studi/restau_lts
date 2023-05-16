@@ -13,6 +13,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BookingController extends AbstractController
 {
+
+    #[Route('/booking/{id}', name: 'app_booking_user', methods: ['GET'])]
+    public function bookUser(Booking $booking, OpenHourRepository $OpenHourRepository, BookingRepository $BookingRepository): Response
+    {
+        // dd($booking);
+
+        return $this->render('page/booking.html.twig', 
+        [
+            'maxDate' => $this->maxDate(),
+            'bookCalendar' => $this->bookCalendar($BookingRepository, $OpenHourRepository),
+            'weekDetail' => $OpenHourRepository->findAll(), 
+            'user' => $booking,           
+        ]);
+    }
+
+
     #[Route('/booking', name: 'app_booking')]
     public function index(OpenHourRepository $OpenHourRepository, BookingRepository $BookingRepository): Response
     {        
@@ -20,7 +36,8 @@ class BookingController extends AbstractController
         [
             'maxDate' => $this->maxDate(),
             'bookCalendar' => $this->bookCalendar($BookingRepository, $OpenHourRepository),
-            'weekDetail' => $OpenHourRepository->findAll(),            
+            'weekDetail' => $OpenHourRepository->findAll(),
+            'user' => $this->blankUser(),
         ]);
     }
     
@@ -75,7 +92,15 @@ class BookingController extends AbstractController
         }
     }
     
-    
+    private function blankUser()
+    {
+        $blankUser = array();
+        $blankUser['firstName'] = '';
+        $blankUser['number_people'] = '';
+
+        return $blankUser;
+
+    }
     
     private function maxDate() 
     {
