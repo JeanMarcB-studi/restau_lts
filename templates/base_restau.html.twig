@@ -62,7 +62,8 @@
             </button>
             
             {# SHOW NAVIGATION OPTIONS #}
-            {{ render(controller('App\\Controller\\NavController::getMenuItems')) }}
+            {# {{ render(controller('App\\Controller\\NavController::getMenuItems')) }} #}
+            {% include "page/_nav.html.twig" %}
 
           </div>
         </nav>

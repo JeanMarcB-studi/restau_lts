@@ -5,10 +5,10 @@
 {% block body %}
 
 
-<pre>
+{# <pre>
   {{ dump(user) }}
 </pre>
- {{ user.firstName }} 
+ {{ user.firstName }}  #}
 
 <div class="myImages">
     <img src="{{ asset('ASSETS/data/bookingHead.jpg') }}" class="myImages" alt="mon image" srcset="">
@@ -17,13 +17,29 @@
 <h1 class="text-center">Réservation</h1>
 <div class="my-divider my-4"></div>
 
+      <pre>
+        {{ dump(app.user) }}
+      </pre> 
+      {# {{ app.user.firstname }} #}
+
+{% if app.user %}
+  {% set firstName = app.user.firstname %}
+  {% set lastName = app.user.lastname %}
+
+{% else %}
+  {% set firstName = '' %}
+  {% set lastName = '' %}
+   
+
+{% endif %}
+
 {# ----------------------------- F O R M --------------------------------- #}
 <form action="{{ path('app_booking_handle') }}"  class="container-sm g-2 myWidth border" method="post" name="form_booking" id="bookForm">
 
   <div class="row g-3">
     <div class="col-md-6">
       <label for="firstname" class="form-label">Prénom :</label>
-      <input type="text" class="form-control" name="firstName" id="firstName" label="firstname"   placeholder="votre Prénom ?" value="{{ user.firstName }}">
+      <input type="text" class="form-control" name="firstName" id="firstName" label="firstname"   placeholder="votre Prénom ?" value="{{ firstName }}">
     <div class="invalid-feedback">Veuillez saisir votre prénom.</div>
   </div>
     
@@ -159,9 +175,9 @@
 
 </form>
 
-<pre>
+{# <pre>
   {{ dump(user) }}
-</pre>
+</pre> #}
 {# 
 <pre>
   {{ dump(bookCalendar) }}

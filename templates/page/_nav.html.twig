@@ -1,0 +1,48 @@
+
+            
+<nav class="ms-auto m-0 my-6 p-0">
+  <div class="collapse navbar-collapse p-0" id="myNavbar">
+    <ul class="navbar-nav mx-2 align-items-center justify-content-center">
+
+      <li class="nav-item mb-1">
+        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="Accueil" href="/">
+          Accueil
+        </a>
+      </li>
+      
+      <li class="nav-item mb-1">
+        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="notre Carte" href="/carte">
+            notre Carte
+        </a>
+      </li>
+
+      <li class="nav-item mb-1">
+        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="nos Menus" href="/menus">
+            nos Menus
+        </a>
+      </li>
+      
+      <li class="nav-item mb-1">
+        <a class="nav-link px-2 pb-2 mx-lg-2 bton d-block myBtonBook" id="RESERVER" href="/booking">
+            RESERVER
+        </a>
+      </li>
+
+      {% if app.user %}
+
+      {# {{ app.user.userIdentifier }}
+      <pre>
+        {{ dump(app.user) }}
+      </pre> #}
+
+      {% else %}   
+      <li class="nav-item mb-1">
+        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="cx" href="/login">
+            cx
+        </a>
+      </li>
+      {% endif %}
+
+    </ul>
+  </div>
+</nav>

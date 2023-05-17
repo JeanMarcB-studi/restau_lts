@@ -14,19 +14,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookingController extends AbstractController
 {
 
-    #[Route('/booking/{id}', name: 'app_booking_user', methods: ['GET'])]
-    public function bookUser(Booking $booking, OpenHourRepository $OpenHourRepository, BookingRepository $BookingRepository): Response
-    {
-        // dd($booking);
+    // #[Route('/booking/{id}', name: 'app_booking_user', methods: ['GET'])]
+    // public function bookUser(Booking $booking, OpenHourRepository $OpenHourRepository, BookingRepository $BookingRepository): Response
+    // {
+    //     // dd($booking);
 
-        return $this->render('page/booking.html.twig', 
-        [
-            'maxDate' => $this->maxDate(),
-            'bookCalendar' => $this->bookCalendar($BookingRepository, $OpenHourRepository),
-            'weekDetail' => $OpenHourRepository->findAll(), 
-            'user' => $booking,           
-        ]);
-    }
+    //     return $this->render('page/booking.html.twig', 
+    //     [
+    //         'maxDate' => $this->maxDate(),
+    //         'bookCalendar' => $this->bookCalendar($BookingRepository, $OpenHourRepository),
+    //         'weekDetail' => $OpenHourRepository->findAll(), 
+    //         'user' => $booking,           
+    //     ]);
+    // }
 
 
     #[Route('/booking', name: 'app_booking')]

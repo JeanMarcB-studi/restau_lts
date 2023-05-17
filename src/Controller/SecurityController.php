@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
 
             // DEPENDING ON THE ROLE:
             $role = $this->getUser()->getRoles()[0];
-            $userId = $this->getUser()->getId();
+            // $userId = $this->getUser()->getId();
 
             if ($role === 'ROLE_ADMIN')
             {
@@ -26,7 +26,8 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('admin');
             } else {
                 // CONNEXION FROM A USER -> GO TO BOOKING PAGE
-                return $this->redirectToRoute('app_booking_user', array('id' => $userId) );
+                // return $this->redirectToRoute('app_booking_user', array('id' => $userId) );
+                return $this->redirectToRoute('app_booking');
             } 
         }
 
