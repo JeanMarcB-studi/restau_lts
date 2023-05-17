@@ -21,7 +21,7 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    public function __construct(private UrlGeneratorInterface $urlGenerator, private Security $security)
     {
     }
 
@@ -42,16 +42,16 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        // dd($request); 
-        // dd($this->getTargetPath($request->getSession(), $firewallName));
+        // if URL was required, the system keeps the original URL to redirect after
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-        // dd($this->urlGenerator->generate('admin'));
-        return new RedirectResponse($this->urlGenerator->generate('admin'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            return new RedirectResponse($this->urlGenerator->generate('admin'));
+        }
+        
+        return new RedirectResponse($this->urlGenerator->generate('app_booking'));
     }
 
     protected function getLoginUrl(Request $request): string

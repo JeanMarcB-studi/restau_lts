@@ -13,24 +13,6 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser()) {
-            // dd($this->getUser());
-
-            // DEPENDING ON THE ROLE:
-            $role = $this->getUser()->getRoles()[0];
-            // $userId = $this->getUser()->getId();
-
-            if ($role === 'ROLE_ADMIN')
-            {
-                // CONNEXION FROM ADMIN
-                return $this->redirectToRoute('admin');
-            } else {
-                // CONNEXION FROM A USER -> GO TO BOOKING PAGE
-                // return $this->redirectToRoute('app_booking_user', array('id' => $userId) );
-                return $this->redirectToRoute('app_booking');
-            } 
-        }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -42,6 +24,5 @@ class SecurityController extends AbstractController
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }

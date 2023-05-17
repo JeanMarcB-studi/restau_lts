@@ -25,11 +25,13 @@
 {% if app.user %}
   {% set firstName = app.user.firstname %}
   {% set lastName = app.user.lastname %}
+  {% set email = app.user.email %}
+  
 
 {% else %}
   {% set firstName = '' %}
   {% set lastName = '' %}
-   
+  {% set email = '' %}
 
 {% endif %}
 
@@ -45,13 +47,13 @@
     
   <div class="col-md-6">
     <label for="lastname" class="form-label">Nom :</label>
-    <input type="text" class="form-control" name="lastName" id="lastName" label="name" placeholder="votre Nom ?">
+    <input type="text" class="form-control" name="lastName" id="lastName" label="name" placeholder="votre Nom ?" value="{{ lastName }}">
     <div class="invalid-feedback">Veuillez saisir votre nom.</div>
   </div>
 
   <div class="col-md-6">
     <label for="email" class="form-label">E-mail :</label>
-    <input type="email" class="form-control" name="email" id="email" placeholder="votre Email ?">
+    <input type="email" class="form-control" name="email" id="email" placeholder="votre Email ?" value="{{ email }}">
     <div class="invalid-feedback">Veuillez saisir votre e-mail.</div>
   </div>
   
