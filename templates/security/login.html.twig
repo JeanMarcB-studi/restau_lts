@@ -17,7 +17,7 @@
                     <div class="mb-3">
                         Vous êtes connecté : {{ app.user.userIdentifier }},
                         <pre>
-                            {{ dump(app.user) }}
+                            {# {{ dump(app.user) }} #}
                         </pre>
                         <a href="{{ path('app_logout') }}">Se déconnecter</a>
                     </div>
