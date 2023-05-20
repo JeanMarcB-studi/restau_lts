@@ -103,6 +103,9 @@
 }
 .btonQuarter{
   border: 1px darkgreen solid;
+  display: block;
+  width: 100%;
+  min-height: 35px;
   
   /* background-color: red; */
 }

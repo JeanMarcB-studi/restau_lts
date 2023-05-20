@@ -92,7 +92,8 @@
 
 
 <body>
-  <div class="container w-100">
+  {# <div class="container-fluid w-100 p-0 g-0"> #}
+  <div class="container-fluid w-100 ">
     {% block body %}
     {% endblock %}
   </div>
@@ -101,14 +102,20 @@
 
 <!-- ----------------------  F  O  O  T  E  R ---------------------- -->
 
+{# logo #}
+<div class="myImages arab1 mx-auto my-5">
+  <img src="{{ asset('ASSETS/IMG/logo.png') }}" class="myStickers w-100" alt="mon image" srcset="">
+</div>
+
 {# SHOW OPENING HOURS #}
 {{ render(controller('App\\Controller\\OpenHourController::openDays')) }}
-
-<!-- ---------------------- / F  O  O  T  E  R ---------------------- -->
 
 {# arabesque #}
 <div class="myImages arab1 mx-auto my-5">
   <img src="{{ asset('ASSETS/IMG/arab1.png') }}" class="myImages" alt="mon image" srcset="">
 </div>
+
+<!-- ---------------------- / F  O  O  T  E  R ---------------------- -->
+
 
 </html>

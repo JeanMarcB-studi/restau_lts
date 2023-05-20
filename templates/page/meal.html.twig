@@ -1,6 +1,5 @@
 {% extends 'base_restau.html.twig' %}
 
-
 {% block title %}notre Carte{% endblock %}
 
 {% block body %}
@@ -43,7 +42,7 @@
     {# open new line CATEGORY #}
     <div class="row p-3">
       <div class="col-12 col-sm-4 text-center text-sm-end">
-        <h2 class="">
+        <h2 class="mealTitle">
             {{ line.category_name|upper }}
         </h2>      
         <h3>
@@ -92,7 +91,7 @@
         Pour réserver...
       </h2>
       <p>      
-      Menu ou carte, pour réserver cliquez sur le bouton :
+      Tentés par nos menus ou par notre carte, pour réserver cliquez sur le bouton :
       </p>
     </div>
   </div>
@@ -103,12 +102,6 @@
       <a class="bton nav-link d-block p-2 myBtonBook mx-auto" href="{{ path('app_booking') }}" role="button">
         RESERVER
       </a>
-    </div>
-  </div>       
-
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-9 col-lg-6 py-5 align-self-center myStickers">
-      <img src="ASSETS/IMG/logo.png" class="myImages w-100" alt="" srcset="">
     </div>
   </div>
 

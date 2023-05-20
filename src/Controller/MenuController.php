@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MenuController extends AbstractController
 {
-    #[Route('/menus', name: 'app_menu')]
+    #[Route('/menus', name: 'app_menus')]
 
     public function index(MenuRepository $MenuRepository): Response
     {

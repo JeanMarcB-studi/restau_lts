@@ -18,31 +18,38 @@
   <img src="{{ asset('ASSETS/IMG/arab1.png') }}" class="myImages" alt="mon image" srcset="">
 </div>
 
+<div class="container container-sm">
+  <div class="row ">
 
-{# LOOP ON THE DIFFERENT MENUS -------------------------------------- #}
-{% for line in lines %}
+    {# LOOP ON THE DIFFERENT MENUS -------------------------------------- #}
+    {% for line in lines %}
 
-  <article class="text-center ">
-      <h2>
-          {{ line.getTitle }}
-      </h2>
-      <div>
-          {{ line.getType }}
-      </div>
-      <div>
-          {{ line.getValidWhen }}
-      </div>
-      <div>
-          {{ line.getDetail }}
-      </div>
-      <div>
-          {{ line.getPrice }} €
-      </div>
-  </article>
+      <article class="col-12 col-lg-6 col-xl-4 text-center my-2 p-2">
+        <div class="menu p-5 mx-auto h-100">
+          <h2 class="mb-0 px-0 menuTitre">
+              {{ line.getTitle }} {# ex: Menu du jour #}
+          </h2>
+          <img src="{{ asset('ASSETS/IMG/arab2.png') }}" class="arab1 mb-3" alt="" srcset="">
+          <div class="">
+              {{ line.getType }} {# ex: formule diner #}
+          </div>
+          <div>
+              {{ line.getValidWhen }} {# ex: En semaine #}
+          </div>
+          <div class="myColor2 mt-1">
+              {{ line.getDetail }} {# ex: Entrée + Plat #}
+          </div>
+          <div class="myColor2 mt-4 mb-2">
+              {{ line.getPrice }} € {# le prix d'un menu #}
+          </div>
+        </div>
+      </article>
 
-{% endfor %}
-{# /LOOP ON THE DIFFERENT MENUS ------------------------------------- #}
+    {% endfor %}
+    {# /LOOP ON THE DIFFERENT MENUS ------------------------------------- #}
 
+  </div>
+</div>
 
 
 <div class="my-divider my-4"></div>
@@ -69,12 +76,6 @@
       </a>
     </div>
   </div>      
-
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-9 col-lg-6 py-5 align-self-center myStickers">
-      <img src="ASSETS/IMG/logo.png" class="myImages w-100" alt="" srcset="">
-    </div>
-  </div>
 
 </article>
 

@@ -1,29 +1,49 @@
 
-            
+
 <nav class="ms-auto m-0 my-6 p-0">
   <div class="collapse navbar-collapse p-0" id="myNavbar">
     <ul class="navbar-nav mx-2 align-items-center justify-content-center">
 
       <li class="nav-item mb-1">
-        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="Accueil" href="/">
+        {% if app.request.pathinfo != path('app_page') %}
+          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="accueil" href="{{ path('app_page') }}">
+        {% else %}
+          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu myActive" id="accueil" href="#">
+        {% endif %}
           Accueil
         </a>
       </li>
       
       <li class="nav-item mb-1">
-        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="notre Carte" href="/carte">
+        {% if app.request.pathinfo != path('app_meal') %}
+          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="carte" href="{{ path('app_meal') }}">
+        {% else %}
+          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu myActive" id="carte" href="#">
+        {% endif %}
+
             notre Carte
         </a>
       </li>
 
       <li class="nav-item mb-1">
-        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="nos Menus" href="/menus">
+        {% if app.request.pathinfo != path('app_menus') %}
+          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="menus" href="{{ path('app_menus') }}">
+        {% else %}
+          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu myActive" id="menus" href="#">
+        {% endif %}
+
             nos Menus
         </a>
       </li>
       
       <li class="nav-item mb-1">
-        <a class="nav-link px-2 pb-2 mx-lg-2 bton d-block myBtonBook" id="RESERVER" href="/booking">
+        {% if app.request.pathinfo != path('app_booking') %}
+          {# <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="menus" href="{{ path('app_booking') }}"> #}
+          <a class="nav-link px-2 pb-2 mx-lg-2 bton d-block myBtonBook" id="RESERVER" href="{{ path('app_booking') }}">
+        {% else %}
+          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu myActive" id="booking" href="#">
+        {% endif %}
+
             RESERVER
         </a>
       </li>
@@ -37,7 +57,7 @@
 
       {% else %}   
       <li class="nav-item mb-1">
-        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="cx" href="/login">
+        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="cx" href="{{ path('app_login') }}">
             cx
         </a>
       </li>
