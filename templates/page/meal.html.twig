@@ -1,17 +1,24 @@
 {% extends 'base_restau.html.twig' %}
 
+
 {% block title %}notre Carte{% endblock %}
 
 {% block body %}
 
+<!-- myCSS -->
+<link rel="stylesheet" href="{{ asset('ASSETS/CSS/style_meal.css') }}">
 
-<div class="myImages">
-    <img src="{{ asset('ASSETS/data/homeRoom.jpg') }}" class="myImages" alt="mon image" srcset="">
+<div class="myImages mealPic mx-auto">
+  <img src="{{ asset('ASSETS/IMG/meal.jpg') }}" class="myImages" alt="mon image" srcset="">
 </div>
 
-<h1 class="text-center">Notre Carte</h1>
+{# TITRE PAGE #}
+<h1 class="text-center upperView">Notre Carte</h1>
+{# arabesque #}
+<div class="myImages arab1 mx-auto upperView">
+  <img src="{{ asset('ASSETS/IMG/arab1.png') }}" class="myImages" alt="mon image" srcset="">
+</div>
 
-<div class="my-divider my-4"></div>
 
 {# LOOP ON THE DIFFERENT MEALS -------------------------------------- #}
 {# "id, category_id, meal_name, description, price, category_name, sub_category, range_num" #}
@@ -19,35 +26,62 @@
 {# initialize rupture variable #}
 {% set rupture = '*' %}
 
+<div class="container container-sm p-0 p-sm-3 meal mx-auto">
+
+
 {# loop on Meals #}
 {% for line in lines %}
 
-  {# show category when and only when it has changed #}
+  {# show category when, and only when, it has changed #}
   {% if rupture != line.category_name %}
-    <h2>
-        {{ line.category_name }}
-        {{ line.sub_category }}
-    </h2>
+    {% if rupture != '*'%}
+      {# close previous colonne & line CATEGORY #}
+        </div> {# end col #}
+      </div> {# end row #}
+    {% endif %}
+
+    {# open new line CATEGORY #}
+    <div class="row p-3">
+      <div class="col-12 col-sm-4 text-center text-sm-end">
+        <h2 class="">
+            {{ line.category_name|upper }}
+        </h2>      
+        <h3>
+            {{ line.sub_category }}
+        </h3>    
+      </div>  {# end col #}
+      <div class="col col-sm-8 mealCateg py-2">
     {% set rupture = line.category_name %}
   {% endif %}
 
-  {# show meal and detail #}
-  <article class="text-center ">
-      <div>
-          {{ line.meal_name }}
-      </div>
-      <div>
-          {{ line.description }}
-      </div>
-      <div>
-          {{ line.price }} €
-      </div>
-  </article>
+
+        {# show meal & detail #}
+        <div class="row mb-3 p-0 p-sm-1">
+          <div class="col ">
+            <h4 class="h5 myColor2">
+                {{ line.meal_name|upper }}
+            </h4>
+            <div class="h6  ">
+                {{ line.description }}
+            </div>
+          </div> {# end col #}
+
+          {# show price #}
+          <div class="col-3 d-flex flex-nowrap">
+            <div class="ms-auto">{{ line.price }}</div>
+            <div class ="ms-1">€</div>              
+          </div>
+        </div> {# end row meal & detail #}
 
 {% endfor %}
+      {# close previous colonne & line CATEGORY #}
+      </div> {# end col #}
+    </div> {# end row #}
+</div>
 {# /LOOP ON THE DIFFERENT MEALS ------------------------------------- #}
 
-<div class="my-divider my-4"></div>
+
+{# <div class="my-divider my-4"></div> #}
 
 <article class="container-fluid">
 

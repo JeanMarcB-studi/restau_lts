@@ -9,11 +9,8 @@
   
   --color0: #687367;
   --color1: rgb(239, 178, 145);
+  --color2: rgb(255, 240, 220, 90%); 
   --color3: black;
-  /* --bs-nav-link-color: white !important; //fonctionne pas !!!
-  --bs-navbar-color: white; */
-  /* --primary: #ff8264; */
-  /* --secondary: #ffaa64; */
 
   --font0: 'Dancing Script', cursive;
   --font1: 'Bai Jamjuree', sans-serif; 
@@ -23,8 +20,17 @@
   font-family: 'Montserrat', sans-serif; */
 }
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .mySecondBackColor{
   background-color: var(--color1);
+}
+.myColor2{
+  color: var(--color2);
 }
 
 /* Used to start the page a bit down because of the curtain effect on the header */
@@ -34,10 +40,6 @@
   height: 100px;
   background-color: black;
 }
-
-/* #btonCollapse{ */
-  /* color: red; */
-  /* } */
   
 h1{
   color: var(--color1);
@@ -59,6 +61,11 @@ a:hover{
 .myImages{
   width: 100%;
   height: auto;
+}
+
+.arab1{
+  width: 45vw;
+  max-width: 140px;
 }
 
 /* ANIMATION */
@@ -145,7 +152,7 @@ a:hover{
   max-width: 500px;
 }
 
-/* RESPONSIVITY : WIDTH VALUES from 350px to 849px LARGE */
+/* RESPONSIVITY : WIDTH VALUES from 576px to 992px LARGE */
 @media (min-width: 576px){
   .myLogo{
     height: 5em;

@@ -4,14 +4,20 @@
 
 {% block body %}
 
+<!-- myCSS -->
+<link rel="stylesheet" href="{{ asset('ASSETS/CSS/style_menus.css') }}">
 
-<div class="myImages">
-    <img src="{{ asset('ASSETS/data/homeRoom.jpg') }}" class="myImages" alt="mon image" srcset="">
+<div class="myImages mealPic mx-auto">
+  <img src="{{ asset('ASSETS/IMG/menus.jpg') }}" class="myImages" alt="mon image" srcset="">
 </div>
 
-<h1 class="text-center">Nos Menus</h1>
+{# TITRE PAGE #}
+<h1 class="text-center upperView">Nos Menus</h1>
+{# arabesque #}
+<div class="myImages arab1 mx-auto upperView">
+  <img src="{{ asset('ASSETS/IMG/arab1.png') }}" class="myImages" alt="mon image" srcset="">
+</div>
 
-<div class="my-divider my-4"></div>
 
 {# LOOP ON THE DIFFERENT MENUS -------------------------------------- #}
 {% for line in lines %}
@@ -50,7 +56,7 @@
         Pour réserver...
       </h2>
       <p>      
-      Menu ou carte, pour réserver cliquez sur le bouton :
+      Tentés par nos menus ou par notre carte, pour réserver cliquez sur le bouton :
       </p>
     </div>
   </div>
