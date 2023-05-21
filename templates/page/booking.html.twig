@@ -24,12 +24,14 @@
   {% set firstName = app.user.firstname %}
   {% set lastName = app.user.lastname %}
   {% set email = app.user.email %}
+  {% set phone = app.user.phone %}
   
 
 {% else %}
   {% set firstName = '' %}
   {% set lastName = '' %}
   {% set email = '' %}
+  {% set phone = '' %}
 
 {% endif %}
 
@@ -43,7 +45,7 @@
       <input type="text" class="form-control" name="firstName" id="firstName" label="firstname"   placeholder="votre Prénom ?" value="{{ firstName }}">
     <div class="invalid-feedback">Veuillez saisir votre prénom.</div>
   </div>
-    
+
   <div class="col-sm-6">
     <label for="lastname" class="form-label">Nom :</label>
     <input type="text" class="form-control" name="lastName" id="lastName" label="name" placeholder="votre Nom ?" value="{{ lastName }}">
@@ -58,7 +60,7 @@
   
   <div class="col-sm-6">
     <label for="phoneNumber" class="form-label">Téléphone :</label>
-    <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="votre No de téléphone ?">
+    <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="votre No de téléphone ?" value="{{ phone }}">
     <div class="invalid-feedback">Veuillez saisir votre numéro de téléphone.</div>
   </div>
 
