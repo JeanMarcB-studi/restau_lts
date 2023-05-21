@@ -14,7 +14,7 @@ window.onscroll = () =>
   y = document.documentElement.scrollTop
   //console.log("Y: "+y)
   
-  // if I go down and header is visible :
+  // if I go down and header is still visible :
   if (((y - startPos) > 100) && (y > lastPos) && (myHeadIsVisible)){
     // console.log("on descend, remonter le bandeau")
     myHead.classList.add('myHeadMove')

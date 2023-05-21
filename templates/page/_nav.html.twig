@@ -7,18 +7,21 @@
       <li class="nav-item mb-1">
         {% if app.request.pathinfo != path('app_page') %}
           <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="accueil" href="{{ path('app_page') }}">
-        {% else %}
-          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu myActive" id="accueil" href="#">
-        {% endif %}
           Accueil
-        </a>
+          </a>
+        {% else %}
+          <span class="nav-link px-2 pb-2 mx-lg-2  myActive myColor1" id="accueil" href="#">
+
+          Accueil
+        </span>
+        {% endif %}
       </li>
       
       <li class="nav-item mb-1">
         {% if app.request.pathinfo != path('app_meal') %}
           <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="carte" href="{{ path('app_meal') }}">
         {% else %}
-          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu myActive" id="carte" href="#">
+          <a class="nav-link px-2 pb-2 mx-lg-2 myActive myColor1" id="carte" href="#">
         {% endif %}
 
             notre Carte
@@ -29,7 +32,7 @@
         {% if app.request.pathinfo != path('app_menus') %}
           <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="menus" href="{{ path('app_menus') }}">
         {% else %}
-          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu myActive" id="menus" href="#">
+          <a class="nav-link px-2 pb-2 mx-lg-2  myActive myColor1" id="menus" href="#">
         {% endif %}
 
             nos Menus
@@ -41,7 +44,7 @@
           {# <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="menus" href="{{ path('app_booking') }}"> #}
           <a class="nav-link px-2 pb-2 mx-lg-2 bton d-block myBtonBook" id="RESERVER" href="{{ path('app_booking') }}">
         {% else %}
-          <a class="nav-link px-2 pb-2 mx-lg-2 myMenu myActive" id="booking" href="#">
+          <a class="nav-link px-2 pb-2 mx-lg-2  myActive myColor1" id="booking" href="#">
         {% endif %}
 
             RESERVER

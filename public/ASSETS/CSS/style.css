@@ -215,6 +215,7 @@ a:hover{
 }
 
 .myActive, .myActive:visited, .myActive:hover, .myActive:active {
+/* .myActive, .myActive :hover { */
   color: var(--color1);
   font-weight: bolder;
 }
