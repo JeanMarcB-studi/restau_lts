@@ -7,7 +7,7 @@ const bookSeat = document.querySelector("#seats")
 const btonsQrs = document.querySelectorAll(".btonQuarter")
 const reserved = document.querySelector('#reserved')
 const quarters = document.querySelector('#quarters')
-
+const btSubmit = document.querySelector('#go')
 
 let dateMin = new Date()
 let dateMax = new Date()
@@ -17,6 +17,7 @@ let day = {}
 let dateNew =''
 let nbSeatsReserved 
 let hourReserved
+let lastBtonQr
 
 dateMin.setHours(0,0,0)
 dateMax.setDate(dateMax.getDate() + 21)
@@ -43,7 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   btonsQrs.forEach(btonQr => {
     btonQr.addEventListener('click', (e) => {
-        clickHour(e.target.value)
+      if (hourReserved) { 
+        lastBtonQr.classList.remove('btonQuarterSelected')
+      }
+      e.target.classList.add('btonQuarterSelected')
+      lastBtonQr = e.target
+      clickHour(e.target.value)
       })
     });
   })
@@ -76,6 +82,11 @@ bookDate.addEventListener('change', (e) => {
 updateHours = (dateChoice) => {
   console.log("dateChoice = " + dateChoice);
   bookHour.value =''
+  if (hourReserved) { 
+    lastBtonQr.classList.remove('btonQuarterSelected')
+  }
+  hourReserved =''
+  lastBtonQr
   
   //search for the date in the file coming from Controller
   let nb = 0
@@ -85,7 +96,6 @@ updateHours = (dateChoice) => {
       day.date = dateChoice
 
       day.dateExtended = new Date(dateChoice).toLocaleDateString('fr-FR', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
-      console.log('coucou')
       console.log("dd= "+day.dateExtended)
 
       nb = parseInt(elt)

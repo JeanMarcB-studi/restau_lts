@@ -20,7 +20,7 @@ const CR = "%0D%0A"; // CR LF
         // store + scan each data from the Form 
         let tt=Array.from(bookForm.elements).forEach((input) => {
 
-            if (input.type !== "button") { //check every item except the button 
+            if ((input.type !== "button")&&(input.type !== "submit")) { //check every item except the button 
 
                 console.log("=================");
                 console.log("CHECK " + input.type + " : " + input.name + " = " + input.value );
@@ -57,7 +57,7 @@ const CR = "%0D%0A"; // CR LF
         // if OK, send msg
         if (allOK) {
             console.log ("All data are ok for booking!");
-            bookForm.requestSubmit()
+            bookForm.requestSubmit(btSubmit)
         }
 
     }, false)
@@ -123,10 +123,8 @@ function validateFields(input) {
         return (input.value > '')
     }
 
+    }
 }
-}
-
-
 
 //=== END - FIELDS VALIDATION  ===//
 
