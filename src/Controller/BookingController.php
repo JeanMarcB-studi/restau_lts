@@ -75,7 +75,7 @@ class BookingController extends AbstractController
         $BookingRepository->save($booking, true);
             // return $this->redirectToRoute('app_booking_controller_in_index', [], Response::HTTP_SEE_OTHER);
 
-            return $this->render('page/bookingOK.html.twig', [
+            return $this->render('page/bookingok.html.twig', [
                 'firstName' => $firstName,
                 'lastName' => $lastName,
                 'bookDate' => $bookDate->format("d/m/Y"),
