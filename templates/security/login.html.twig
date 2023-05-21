@@ -9,55 +9,53 @@
     IDENTIFICATION
 </h1>
 
-<div class="p-2">
-    <article class="container-sm myWidth mx-auto border rounded-2">
-        <div class="row">
-            <div class="col-12 mt-3">
+<div class="container-fluid">
+    <article class="row">
+        <div class="col-12 mt-3">
 
-                <form class="container-sm myWidth mx-auto myShadow" method="post" >
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
+            <form class="container myWidth mx-auto border rounded-2" method="post" >
+                <div class="row">
 
-                    {% if app.user %}
-                        <div class="mb-3">
-                            Vous êtes connecté : {{ app.user.userIdentifier }},
-                            <pre>
-                            {# {{ dump(app.user) }} #}
-                            </pre>
-                            <a href="{{ path('app_logout') }}">Se déconnecter</a>
-                        </div>
-                    {% endif %}
+                    <div class="col-12">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
 
-                    <h2 class="mb-3">Veuillez entrer vos identifiants : </h2>
+                        {% if app.user %}
+                            <div class="mb-3">
+                                Vous êtes connecté : {{ app.user.userIdentifier }},
+                                <pre>
+                                {# {{ dump(app.user) }} #}
+                                </pre>
+                                <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-12">
+                        <h2 class="mb-3">Veuillez entrer vos identifiants : </h2>
+                    
+                        <label for="inputEmail"  class="form-label">Email :</label>
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                    </div>
                 
-                    <label for="inputEmail"  class="form-label">Email :</label>
-                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-                
-                    <label for="inputPassword" class="form-label mt-3">Mot de passe :</label>
-                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                    <div class="col-12">
+                        <label for="inputPassword" class="form-label mt-3">Mot de passe :</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-                    <input type="hidden" name="_csrf_token"
-                        value="{{ csrf_token('authenticate') }}"
-                    >
+                        <input type="hidden" name="_csrf_token"
+                            value="{{ csrf_token('authenticate') }}"
+                        >
+                    </div>
 
-                {#
-                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                    See https://symfony.com/doc/current/security/remember_me.html
+                    <div class="col-12 w-100">
+                        <button class="btn btn-outline-info btn-lg my-4 w-100" type="submit">
+                            Connexion
+                        </button>
+                    </div>
 
-                #}
-                    {# <div class="checkbox my-3">
-                        <label>
-                            <input type="checkbox" name="_remember_me"> Se rappeler de moi
-                        </label>
-                    </div> #}
-
-                    <button class="btn btn-lg btn-outline-info my-4" type="submit">
-                        Connexion
-                    </button>
-                </form>
-
-            </div>
+                </div>   
+            </form>
         </div>
     </article>
 </div>
