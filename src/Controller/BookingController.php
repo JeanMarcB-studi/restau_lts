@@ -86,7 +86,6 @@ class BookingController extends AbstractController
         catch (Exception $e) {
             // dd($e->getMessage());
             return $this->render('page/bookingOK.html.twig', []);
-        // return $this->render('page/bookingOK.html.twig', ['toto' => 'titi'     ]);
             // return $this->redirectToRoute('app_booking', [], Response::HTTP_SEE_OTHER);
             // return $this->render('page/booking.html.twig');
         }
