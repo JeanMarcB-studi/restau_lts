@@ -29,6 +29,13 @@
 .mySecondBackColor{
   background-color: var(--color1);
 }
+
+.myColor0{
+  color: var(--color0);
+}
+.myColor1{
+  color: var(--color1);
+}
 .myColor2{
   color: var(--color2);
 }
@@ -207,7 +214,7 @@ a:hover{
   }
 }
 
-.myActive, .myActive:hover ,.myActive:visited{
+.myActive, .myActive:visited, .myActive:hover, .myActive:active {
   color: var(--color1);
   font-weight: bolder;
 }

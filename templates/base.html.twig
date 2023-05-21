@@ -11,10 +11,13 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
 
-            <!-- include bootstrap CSS -->
+            {# include bootstrap CSS #}
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
             <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-            <!-- <link rel="stylesheet" href="_bootstrap/bootstrap.css"> -->
+
+            <!-- myCSS -->
+            <link rel="stylesheet" href="{{ asset('ASSETS/CSS/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('ASSETS/CSS/animate.css') }}">
 
 
         {% endblock %}

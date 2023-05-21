@@ -4,31 +4,46 @@
 
 {% block body %}
 
-<article class="container">
-    <div class="row">
+<h1 class="text-center my-5">
+    ENREGISTREMENT
+</h1>
+
+<div class="p-2">
+    <article class="container-sm myWidth mx-auto border  rounded-2">
+        <div class="row">
+            <div class="col mt-3">
+
+                <h2>Vous enregistrer :</h2>
+
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Mot de passe'
+                    }) }}
+
+                    {{ form_row(registrationForm.first_name) }}
+                    {{ form_row(registrationForm.last_name) }}
+                    {{ form_row(registrationForm.comment) }}
+
+                    {# {{ form_row(registrationForm.agreeTerms) }} #}
+
+                    <button type="submit" class="btn btn-outline-info btn-lg my-4">s'enregistrer</button>
+                {{ form_end(registrationForm) }}
+
+            </div>
+        </div>
+    </article>
+</div>
+
+<div class="container-sm myWidth mx-auto">
+    <div class="row px-2">
         <div class="col">
-
-
-            <h1>Vous enregistrer :</h1>
-
-            {{ form_start(registrationForm) }}
-                {{ form_row(registrationForm.email) }}
-                {{ form_row(registrationForm.plainPassword, {
-                    label: 'Mot de passe'
-                }) }}
-
-                {{ form_row(registrationForm.first_name) }}
-                {{ form_row(registrationForm.last_name) }}
-                {{ form_row(registrationForm.comment) }}
-
-
-                {# {{ form_row(registrationForm.agreeTerms) }} #}
-
-                <button type="submit" class="btn btn-lg btn-primary">s'enregistrer</button>
-            {{ form_end(registrationForm) }}
-
+            <a class="nav-link px-2 pb-2 mx-lg-2" id="carte" href="{{ path('app_login') }}">
+            Déjà enregistré ? <span class="text-info">Se connecter</span>
+            </a>
         </div>
     </div>
-</article>
+</div>
+
 
 {% endblock %}
