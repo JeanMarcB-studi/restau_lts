@@ -37,6 +37,10 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Votre Nom'
             ])
 
+            ->add('phone', TextType::class, [
+                'label' => 'Votre Téléphone'
+            ])
+
             ->add('comment', TextType::class, [
                 'label' => 'Commentaire : allergies, régime spécial...'
             ])
