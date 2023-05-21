@@ -10,8 +10,8 @@
 
 {# <div class="d-block"></div> #}
 
-<h1 class="text-center">
-    IDENTIFICATION
+<h1 class="text-center my-5">
+    CONNECTION
 </h1>
 
 <div class="container-fluid">
@@ -22,19 +22,21 @@
                 <div class="row">
 
                     <div class="col-12">
+
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
 
                         {% if app.user %}
                             <div class="mb-3">
-                                Vous êtes connecté : {{ app.user.userIdentifier }},
-                                <pre>
+                                Vous êtes déjà connecté : {{ app.user.userIdentifier }},
+                                {# <pre> #}
                                 {# {{ dump(app.user) }} #}
-                                </pre>
-                                <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                                {# </pre> #}
+                                <a href="{{ path('app_logout') }}" class="nav-link"><span class="text-info"> Se déconnecter</span></a>
                             </div>
                         {% endif %}
+
                     </div>
 
                     <div class="col-12">

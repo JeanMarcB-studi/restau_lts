@@ -32,7 +32,7 @@
 {% for line in lines %}
 
   {# show category when, and only when, it has changed #}
-  {% if rupture != line.category_name %}
+  {% if rupture != (line.category_name ~ line.sub_category) %}
     {% if rupture != '*'%}
       {# close previous colonne & line CATEGORY #}
         </div> {# end col #}
@@ -50,7 +50,7 @@
         </h3>    
       </div>  {# end col #}
       <div class="col col-sm-8 mealCateg py-2">
-    {% set rupture = line.category_name %}
+    {% set rupture = line.category_name ~ line.sub_category %}
   {% endif %}
 
 

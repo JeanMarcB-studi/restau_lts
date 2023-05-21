@@ -52,11 +52,11 @@
       </li>
 
       {% if app.user %}
-
-      {# {{ app.user.userIdentifier }}
-      <pre>
-        {{ dump(app.user) }}
-      </pre> #}
+      <li class="nav-item mb-1">
+        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="cx" href="{{ path('app_login') }}">
+            cx
+        </a>
+      </li>
 
       {% else %}   
       <li class="nav-item mb-1">
