@@ -14,21 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookingController extends AbstractController
 {
 
-    // #[Route('/booking/{id}', name: 'app_booking_user', methods: ['GET'])]
-    // public function bookUser(Booking $booking, OpenHourRepository $OpenHourRepository, BookingRepository $BookingRepository): Response
-    // {
-    //     // dd($booking);
-
-    //     return $this->render('page/booking.html.twig', 
-    //     [
-    //         'maxDate' => $this->maxDate(),
-    //         'bookCalendar' => $this->bookCalendar($BookingRepository, $OpenHourRepository),
-    //         'weekDetail' => $OpenHourRepository->findAll(), 
-    //         'user' => $booking,           
-    //     ]);
-    // }
-
-
     #[Route('/booking', name: 'app_booking')]
     public function index(OpenHourRepository $OpenHourRepository, BookingRepository $BookingRepository): Response
     {        
@@ -70,10 +55,9 @@ class BookingController extends AbstractController
         $booking->setEmail($email);
         $booking->setPhone($phoneNumber);
         
-         // dd($booking);
-
+        
         $BookingRepository->save($booking, true);
-            // return $this->redirectToRoute('app_booking_controller_in_index', [], Response::HTTP_SEE_OTHER);
+        //  dd($booking);
 
             return $this->render('page/bookingok.html.twig', [
                 'firstName' => $firstName,
@@ -84,10 +68,9 @@ class BookingController extends AbstractController
             ]);
         }       
         catch (Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             return $this->render('page/bookingko.html.twig', []);
             // return $this->redirectToRoute('app_booking', [], Response::HTTP_SEE_OTHER);
-            // return $this->render('page/booking.html.twig');
         }
     }
     

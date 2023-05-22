@@ -5,8 +5,8 @@ const CR = "%0D%0A"; // CR LF
    // FORM DECLARE
     
     (function() {
-    const bookForm = document.querySelector("#bookForm")
-    const btonPost = document.querySelector("#submit")
+    // const bookForm = document.querySelector("#bookForm")
+    const btonPost = document.querySelector("#go")
     // let bookForm = document.getElementById('contactForm');
     // let btonPost = document.querySelector("#postMsg")
 
@@ -29,8 +29,8 @@ const CR = "%0D%0A"; // CR LF
                 if (!validateFields(input)) {
                     console.log('test ERR !');
                     allOK = false;
-                    //event.preventDefault();
-                    //event.stopPropagation();
+                    event.preventDefault();
+                    event.stopPropagation();
                     
                     input.classList.remove("is-valid");
 
