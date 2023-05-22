@@ -7,14 +7,11 @@
       <li class="nav-item mb-1">
         {% if app.request.pathinfo != path('app_page') %}
           <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="accueil" href="{{ path('app_page') }}">
-          Accueil
-          </a>
         {% else %}
-          <span class="nav-link px-2 pb-2 mx-lg-2  myActive myColor1" id="accueil" href="#">
-
-          Accueil
-        </span>
+          <a class="nav-link px-2 pb-2 mx-lg-2 myActive myColor1" id="accueil">
         {% endif %}
+            Accueil
+        </a>
       </li>
       
       <li class="nav-item mb-1">
@@ -23,7 +20,6 @@
         {% else %}
           <a class="nav-link px-2 pb-2 mx-lg-2 myActive myColor1" id="carte" href="#">
         {% endif %}
-
             notre Carte
         </a>
       </li>
@@ -34,37 +30,38 @@
         {% else %}
           <a class="nav-link px-2 pb-2 mx-lg-2  myActive myColor1" id="menus" href="#">
         {% endif %}
-
             nos Menus
         </a>
       </li>
       
       <li class="nav-item mb-1">
         {% if app.request.pathinfo != path('app_booking') %}
-          {# <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="menus" href="{{ path('app_booking') }}"> #}
           <a class="nav-link px-2 pb-2 mx-lg-2 bton d-block myBtonBook" id="RESERVER" href="{{ path('app_booking') }}">
         {% else %}
           <a class="nav-link px-2 pb-2 mx-lg-2  myActive myColor1" id="booking" href="#">
         {% endif %}
-
             RESERVER
         </a>
       </li>
 
-      {% if app.user %}
       <li class="nav-item mb-1">
-        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="cx" href="{{ path('app_login') }}">
-            cx
-        </a>
+        {% if app.user %}
+        {# USER IS ALREADY CONNECTED #}
+          <a class="nav-link myBtonConnect p-0 px-1 m-sm-2 mx-sm-3 " id="cx" href="{{ path('app_login') }}">
+            <span class="bi bi-person-check-fill">
+            </span>                    
+          </a>
+        {% else %}   
+        {# USER IS NOT CONNECTED #}
+        <li class="nav-item mb-1">
+          <a class="nav-link myBtonConnect p-0 px-1 m-sm-2 mx-sm-3 " id="cx" href="{{ path('app_login') }}">
+            <span class="bi bi-person-fill">
+            </span>                    
+          </a>
+        {% endif %}
       </li>
 
-      {% else %}   
-      <li class="nav-item mb-1">
-        <a class="nav-link px-2 pb-2 mx-lg-2 myMenu " id="cx" href="{{ path('app_login') }}">
-            cx
-        </a>
-      </li>
-      {% endif %}
+
 
     </ul>
   </div>

@@ -1,14 +1,10 @@
-const CR = "%0D%0A"; // CR LF
 
 
-
-   // FORM DECLARE
-    
-    (function() {
-    // const bookForm = document.querySelector("#bookForm")
+//    FORM CONTROLS    
+(function() {
+    const bookForm = document.querySelector("#bookForm")
     const btonPost = document.querySelector("#go")
-    // let bookForm = document.getElementById('contactForm');
-    // let btonPost = document.querySelector("#postMsg")
+    const errMessg = document.querySelector("#errMessage")
 
     //When the button [Envoyer] is clicked
     btonPost.addEventListener('click', function(event) {
@@ -16,11 +12,13 @@ const CR = "%0D%0A"; // CR LF
         console.clear()
         console.log("start CONTROLS...");
         let allOK = true;
+        errMessg.style.display = 'none'
 
         // store + scan each data from the Form 
         let tt=Array.from(bookForm.elements).forEach((input) => {
 
-            if ((input.type !== "button")&&(input.type !== "submit")) { //check every item except the button 
+            //check every item except the buttons 
+            if ((input.type !== "button")&&(input.type !== "submit")) { 
 
                 console.log("=================");
                 console.log("CHECK " + input.type + " : " + input.name + " = " + input.value );
@@ -29,6 +27,8 @@ const CR = "%0D%0A"; // CR LF
                 if (!validateFields(input)) {
                     console.log('test ERR !');
                     allOK = false;
+
+                    //BLOCK THE FORM FOR SENDING
                     event.preventDefault();
                     event.stopPropagation();
                     
@@ -41,12 +41,9 @@ const CR = "%0D%0A"; // CR LF
                 } 
                 //if data is valid (return was true) 
                 else {
-                    // prepare data for email content ----------------
                     console.log ('test OK ');
-                    message += input.name +" : " 
-                    message += removeTags(input.value)  + CR + CR;
 
-                    //hide error msg 
+                    //ok so hide error msg 
                     input.nextElementSibling.style.display = 'none';
                     input.classList.remove("is-invalid");
                     input.classList.add("is-valid");
@@ -54,79 +51,78 @@ const CR = "%0D%0A"; // CR LF
 
             }
         });
-        // if OK, send msg
+        // if not OK, show there are errors 
         if (allOK) {
-            console.log ("All data are ok for booking!");
-            bookForm.requestSubmit(btSubmit)
+            console.log ("All data are ok for booking!")
+            // bookForm.requestSubmit(btSubmit)
+        } else {
+            
+            errMessg.style.display = 'block'
+            console.log ("Errors found!")
         }
 
     }, false)
 })()
 
-//=== END - FORM DECLARE ===============//
 
-
-//=== START - FIELDS VALIDATION ===//
-
+// Fields Validation Controls
 function validateFields(input) {
 
     let fieldName = input.name;
 
     switch (input.name){
-    case "firstName" : {
-        return (
-            //champ obligatoire renseigné ?
-            validateRequired(input)
-             //format saisie ok ?
-            && checkFormat(input, "^([A-Za-z ,.'-]){2,35}$")
+        case "firstName" : {
+            return (
+                //champ obligatoire renseigné ?
+                validateRequired(input)
+                //format saisie ok ?
+                && checkFormat(input, "^([A-Za-z ,.'-]){2,35}$")
+                )
+            }
+            
+        case "lastName" :{
+            return (
+                validateRequired(input)
+                && checkFormat(input, "^([A-Za-z ,.'-]){2,35}$")
+                )
+        }
+            
+        case "email" :{
+            return (
+                validateRequired(input)
+                && checkFormat(input, "(@)(.+)$")
+                && validateEmail(input)
+                )
+            }
+    
+        case "phoneNumber" :{
+            return (
+                validateRequired(input)
+                && validatePhoneNumber(input)
             )
         }
         
-    case "lastName" :{
-        return (
-            validateRequired(input)
-            && checkFormat(input, "^([A-Za-z ,.'-]){2,35}$")
-            )
-    }
-        
-    case "email" :{
-        return (
-            validateRequired(input)
-            && checkFormat(input, "(@)(.+)$")
-            && validateEmail(input)
-            )
+        case "seats" :{
+            return(input.value > 0)
         }
- 
-    case "phoneNumber" :{
-        return (
-            validateRequired(input)
-            && validatePhoneNumber(input)
-        )
-    }
-    
-    case "seats" :{
-        return(input.value > 0)
-    }
-    
-    case "book-date" :{
-        return(checkDate(input))
-        // return(true)
-    }
-    
-    case "message" :{
-        return (
-            validateLength(input, 0, 250)
-            )
-    }
+        
+        case "book-date" :{
+            return(checkDate(input))
+        }
+        
+        case "message" :{
+            return (
+                validateLength(input, 0, 250)
+                )
+        }
 
-    case "hour" : {
-        return (input.value > '')
-    }
-
+        case "hour" : {
+            return (input.value > '')
+        }
     }
 }
 
-//=== END - FIELDS VALIDATION  ===//
+// Different fields validation functions
 
 // Check Date
 function checkDate(input) {
@@ -164,19 +160,6 @@ function validateEmail(input) {
 // Validate one Phone number
 function validatePhoneNumber(input) {
     return input.value.match(/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/);
-}
-
-// for blocking html injections
-function removeTags(str) {
-    if ((str===null) || (str===''))
-        return false;
-    else {
-        str = str.toString();
-        // Regular expression to identify HTML tags in 
-        // the input string. Replacing the identified 
-        // HTML tag with a null string.
-        return str.replace( /(<([^>]+)>)/ig, '');
-    }
 }
 
 
