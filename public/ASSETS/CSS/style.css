@@ -9,15 +9,12 @@
   
   --color0: #687367;
   --color1: rgb(239, 178, 145);
-  --color2: rgb(255, 240, 220, 90%); 
+  --color2: #fff0dce6; 
   --color3: black;
 
   --font0: 'Dancing Script', cursive;
   --font1: 'Bai Jamjuree', sans-serif; 
   --font2: 'Lato', sans-serif;
-   /* font-family: 'Shadows Into Light Two', cursive; */
-  /* font-family: 'Lato', sans-serif;
-  font-family: 'Montserrat', sans-serif; */
 }
 
 *{
@@ -237,7 +234,8 @@ body{
   align-items: center;
   justify-content: center;
   height: 100vh;
-  font: var(--font2);
+  font-family: var(--font2);
+  line-height: 110%;
   font-size: 1.2rem;
 }
 
