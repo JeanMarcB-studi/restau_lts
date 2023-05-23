@@ -185,17 +185,6 @@
 
 </form>
 
-{# <pre>
-  {{ dump(user) }}
-</pre> #}
-{# 
-<pre>
-  {{ dump(bookCalendar) }}
-</pre> 
-<pre>
-  {{ dump(weekDetail) }}
-</pre> #}
-
 <div id="shareData" 
   data-week="{{ weekDetail|serialize(format = 'json') }}";
   data-bookCalendar="{{ bookCalendar|serialize(format = 'json') }}";

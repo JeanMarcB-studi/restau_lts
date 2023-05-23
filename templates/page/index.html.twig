@@ -4,12 +4,6 @@
 
 {% block body %}
 
-<!--
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
--->
 
 <div class="myImages">
     <img src="{{ asset('ASSETS/data/homeRoom.jpg') }}" class="myImages" alt="mon image" srcset="">
@@ -29,23 +23,13 @@
       </div>
     </div>
     
-    {# <div class="col-12 col-sm-6 col-xl-4 p-3 myStickers">
-      <div class="card myContainer">
-        <img src="{{ asset('ASSETS/data/sp1.jpg') }}" class="myImages"> #}
-
-
 
     <div class="col-12 col-sm align-self-center">
       <div class="card myContainer myStickers m-auto">
         <img src="{{ asset('ASSETS/data/homeChief.jpg') }}" class="myImages w-100" alt="" srcset="">
       </div>
     </div>
-    {# <div class="col-12 col-sm align-self-center">
-      <div class="card myContainer myStickers  m-auto">
-        <img src="ASSETS/data/homeChief.jpg" class="myImages w-100" alt="" srcset="">
-      </div>
-    </div>
-     #}
+
   </div>
 </article>
 
@@ -115,7 +99,6 @@
 
   <div class="row justify-content-center ">
     <div class="col text-center py-0">        
-      <!-- <a class="nav-link ps-2 pe-0 p-sm-2 mx-lg-3 myBtonBook" href="booking.php"> -->
       <a class="bton nav-link d-block p-2 myBtonBook mx-auto" href="{{ path('app_booking') }}" role="button">
         RESERVER
       </a>
