@@ -76,14 +76,14 @@ function validateFields(input) {
                 //champ obligatoire renseigné ?
                 validateRequired(input)
                 //format saisie ok ?
-                && checkFormat(input, "^([A-Za-z ,.'-]){2,35}$")
+                && checkFormat(input, "^[a-zA-Zàâéèëêïîôùüç\' -]{2,150}$")
                 )
             }
             
-        case "lastName" :{
-            return (
-                validateRequired(input)
-                && checkFormat(input, "^([A-Za-z ,.'-]){2,35}$")
+            case "lastName" :{
+                return (
+                    validateRequired(input)
+                    && checkFormat(input, "^[a-zA-Zàâéèëêïîôùüç\' -]{2,150}$")
                 )
         }
             
