@@ -13,7 +13,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 
-  <!-- myCSS -->
+  {# myCSS #}
   <link rel="stylesheet" href="{{ asset('ASSETS/CSS/style.css') }}">
   <link rel="stylesheet" href="{{ asset('ASSETS/CSS/animate.css') }}">
   
@@ -26,19 +26,19 @@
 <header class="myHead">
   <div class="container-fluid myHeader g-0">
   
-    <!-- H E A D E R -->
+    {# -- H E A D E R -- #}
     <div class="row align-items-center w-100 p-0 g-0">
       
-      <!-- 1 )  LOGO & TITLE -->
+      {# -- 1 )  LOGO & TITLE -- #}
       <div class="col-4 h-100 my-3">
-          <!-- logo -->
+          {# -- logo -- #}
           <span class="d-block p-0">
             <a href="index.php">
               <div class="img myLogo m-auto p-0">
               </div>            
             </a>              
           </span>
-          <!-- title -->
+          {# -- title -- #}
           <span class="d-block p-1">
             <div class = "myRestau text-center">
               RESTAURANT
@@ -49,13 +49,13 @@
           </span>
       </div>
     
-      <!-- 2 )  NAVIGATION MENU  -->
+      {# -- 2 )  NAVIGATION MENU  -- #}
       <div class="col-8 m-0 p-0">
-        <!-- NAVIGATION BAR -->
+        {# -- NAVIGATION BAR -- #}
         <nav class="navbar navbar-expand-sm navbar-dark p-0 my-0">
           <div class="container-fluid p-0 p-sm-5">
             
-            <!-- B U T T O N  on MOBILE -->
+            {# -- B U T T O N  on MOBILE -- #}
             <button class="navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation" id="btonCollapse">
               <span class="navbar-toggler-icon ">
               </span>
@@ -72,7 +72,7 @@
   </div> 
 </header>
 
-<!-- add some space here because the Header curtain effect -->
+{# <!-- add some space here because the Header curtain effect --> #}
 <div class="myBlock">  
 </div>
 <!-- ---------------------- /  H  E  A  D  E  R ----------------- -->
@@ -85,7 +85,7 @@
 
     <script src="{{ asset('ASSETS/JVS/script.js') }}"></script>
 
-    <!-- include bootstrap -->
+    {# <!-- include bootstrap --> #}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 {% endblock %}
@@ -114,7 +114,7 @@
   <img src="{{ asset('ASSETS/IMG/arab1.png') }}" class="myImages" alt="mon image" srcset="">
 </div>
 
-<!-- ---------------------- / F  O  O  T  E  R ---------------------- -->
+{# <!-- ---------------------- / F  O  O  T  E  R ---------------------- --> #}
 
 
 </html>

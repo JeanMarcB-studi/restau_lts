@@ -16,7 +16,7 @@ class BookingController extends AbstractController
 
     #[Route('/booking', name: 'app_booking')]
     public function index(OpenHourRepository $OpenHourRepository, BookingRepository $BookingRepository): Response
-    {        
+    {
         return $this->render('page/booking.html.twig', 
         [
             'maxDate' => $this->maxDate(),
@@ -25,7 +25,7 @@ class BookingController extends AbstractController
             'user' => $this->blankUser(),
         ]);
     }
-    
+
     #[Route('/booking/handle', name: 'app_booking_handle' , methods: ['GET', 'POST'])]
     public function handleForm(Request $request, BookingRepository $BookingRepository): Response
     {
