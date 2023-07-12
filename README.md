@@ -1,0 +1,55 @@
+# restau_lts
+Restaurant website created with Symfony LTS version
+Démarche pour installer en Local
+
+Récupérer les datas :
+https://github.com/JeanMarcB-studi/restau_lts 
+
+clic sur le bouton : [<> Code]  > Download ZIP
+Copier le répertoire restau_lst et tout son contenu sur un ordinateur.
+
+Installer PHP si pas déjà fait :
+https://www.apachefriends.org/fr/index.html 
+
+Installer Composer si pas déjà fait :
+https://getcomposer.org/download/
+
+installer Symfony si pas déjà fait :
+https://symfony.com/download 
+
+Création des dépendances :
+Composer install
+
+Créer une base de données « Restaurant » ou autre dans mySQL ou MariaDB…
+Entrer les informations du setup dans un fichier .env.local à situer à la racine, 
+ex de paramétrage local en fonction de votre environnement :
+DATABASE_URL="mysql://root:@127.0.0.1:3306/restau?serverVersion=mariadb-10.4.25&charset=utf8mb4"
+APP_ENV=dev
+
+Lancer les serveurs apache et mysql
+
+Lancer symphony:
+symfony server:start
+
+Créer les tables dans votre base de donnée :
+php bin/console doctrine:migrations:migrate
+
+Vérifier avec PHP myAdmin que les tables suivantes ont bien été créées :
+  
+-	category
+-	meal 
+-	menu
+-	open_hour
+-	user
+ 
+Charger des données
+Un jeu de données est fourni, exécuter dans mySQL le fichier SQL fourni dans le dossier « Public » :
+Game_set.sql
+
+Diverses données seront créées, incluant un compte administrateur pour la gestion du backoffice.
+
+Se connecter alors sur la page de Symfony, le site du Quai Antique devrait apparaître. 
+
+Important :
+Pour se logger en tant que Admin et voir ainsi la partie des CRUD, cliquer sur l’icône de connexion en haut à droite de la page et saisir
+les identifiants communiqués via l'ECF
