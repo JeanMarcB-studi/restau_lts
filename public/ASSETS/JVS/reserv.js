@@ -1,16 +1,17 @@
 console.log('réservations, bonjour')
 
-const myData = document.getElementById('shareData')
-const bookDate = document.querySelector("#book-date")
-const bookHour = document.querySelector("#reservHour")
-const bookSeat = document.querySelector("#seats")
-const btonsQrs = document.querySelectorAll(".btonQuarter")
+//Initiate DOM variables
+const myData = document.querySelector('#shareData')
+const bookDate = document.querySelector('#book-date')
+const bookHour = document.querySelector('#reservHour')
+const bookSeat = document.querySelector('#seats')
+const btonsQrs = document.querySelectorAll('.btonQuarter')
 const reserved = document.querySelector('#reserved')
 const quarters = document.querySelector('#quarters')
 const btSubmit = document.querySelector('#go')
+const limitDat = document.querySelector('#outOfdates')
 
-let dateMin = new Date()
-let dateMax = new Date()
+//Some needed variables
 let bookCalendar
 let weekHours
 let day = {}
@@ -19,18 +20,21 @@ let nbSeatsReserved
 let hourReserved
 let lastBtonQr
 
+//Determine reservation max date range
+let dateMin = new Date()
 dateMin.setHours(0,0,0)
+let dateMax = new Date()
 dateMax.setDate(dateMax.getDate() + 21)
 dateMax.setHours(23,59,59)
 
-console.log("les dates :")
-console.log(dateMin.toISOString())
-console.log(dateMax.toISOString())
+// console.log('les dates :')
+// console.log(dateMin.toISOString())
+// console.log(dateMax.toISOString())
 
 
 //----- GET DATA COMING FROM <- TWIG <- CONTROLLER <- REPO
 document.addEventListener('DOMContentLoaded', function() {
- 
+
   // opening hours of the week
   weekHours = JSON.parse(myData.dataset.week)
 
@@ -42,11 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
   nbSeatsReserved = bookSeat.value
   updateHours(dateStart)
 
+  // put event on quarters buttons
   btonsQrs.forEach(btonQr => {
     btonQr.addEventListener('click', (e) => {
-      if (hourReserved) { 
+      if (hourReserved) {
+        // if a quarter button was already cliked, unmark it
         lastBtonQr.classList.remove('btonQuarterSelected')
       }
+      // mark the new quarter button click
       e.target.classList.add('btonQuarterSelected')
       lastBtonQr = e.target
       clickHour(e.target.value)
@@ -54,12 +61,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   })
   
-  // 
+  // show the reservation detail aside the button RESERVER
   clickHour = (timeBooking) => {
   console.log('clic ' +  timeBooking)
   hourReserved = timeBooking
   bookHour.value = timeBooking
-  console.log(bookDate)
+  // console.log(bookDate)
   reserved.innerHTML = day.dateExtended + "<br> à " + hourReserved
 }
 
@@ -80,7 +87,7 @@ bookDate.addEventListener('change', (e) => {
 
 // UPDATE SHOW OF QUARTER HOURS
 updateHours = (dateChoice) => {
-  console.log("dateChoice = " + dateChoice);
+  // console.log("dateChoice = " + dateChoice);
   bookHour.value =''
   if (hourReserved) { 
     lastBtonQr.classList.remove('btonQuarterSelected')
@@ -88,55 +95,62 @@ updateHours = (dateChoice) => {
   hourReserved =''
   lastBtonQr
   
-  //search for the date in the file coming from Controller
-  let nb = 0
+  //search for the corresponding date in the 3 weeks file coming from Controller
+  let dateFound = false
   quarters.style.display = "block"
+  limitDat.style.display = "none"
+
+  // console.log('--- bookCalendar : ---')
+  // console.log(bookCalendar)
   for(elt in bookCalendar){
+    // console.log("parseint(elt) = " + parseInt(elt))
+    // console.log("elt = " + elt);
     if (bookCalendar[elt].date === dateChoice){
-      day.date = dateChoice
-
+      // day.date = dateChoice
+      dateFound = true
       day.dateExtended = new Date(dateChoice).toLocaleDateString('fr-FR', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
-      console.log("dd= "+day.dateExtended)
+      // console.log("dd= "+day.dateExtended)
 
-      nb = parseInt(elt)
-      console.log(bookCalendar[nb])
-      console.log("num jour sur 3 semaines = " + nb);
-      console.log("bookCalendar[nb].mealTime = " + bookCalendar[nb].mealTime);
+      // nb = parseInt(elt)
+      // console.log(bookCalendar[elt])
+      // console.log("num jour sur 3 semaines = " + elt);
+      // console.log("bookCalendar[nb].mealTime = " + bookCalendar[elt].mealTime);
 
-      day.lunchSeats = bookCalendar[nb].seats
-      day.lunchAvailable = bookCalendar[nb].available
-      day.dayNum = bookCalendar[nb].dayNum
-      day.weekDay = weekHours[day.dayNum -1].weekDay
-      console.log(day.weekDay)
+      // day.lunchSeats = bookCalendar[nb].seats
+      // day.lunchAvailable = bookCalendar[nb].available
+      day.dayNum = bookCalendar[elt].dayNum - 1
+      // day.weekDay = weekHours[day.dayNum -1].weekDay
+      // console.log(day.weekDay)
 
-      console.log("day.dayNum = " + day.dayNum);
-      console.log(weekHours)
+      // console.log("day.dayNum = " + day.dayNum);
+      // console.log(weekHours)
       
-      if (bookCalendar[nb].mealTime === 'MIDI') {
-        startHour = new Date(weekHours[day.dayNum - 1].lunchStart)
-        endHour = new Date(weekHours[day.dayNum - 1].lunchEnd)
+      if (bookCalendar[elt].mealTime === 'MIDI') {
+        startHour = new Date(weekHours[day.dayNum].lunchStart)
+        endHour = new Date(weekHours[day.dayNum].lunchEnd)
         
       } else {
-        startHour = new Date(weekHours[day.dayNum - 1].dinnerStart)
-        endHour = new Date(weekHours[day.dayNum - 1].dinnerEnd)
+        startHour = new Date(weekHours[day.dayNum].dinnerStart)
+        endHour = new Date(weekHours[day.dayNum].dinnerEnd)
       }
 
-    console.log (day)
+    // console.log (day)
 
-    hideQuarters(bookCalendar[nb].mealTime)
+    hideQuarters(bookCalendar[elt].mealTime)
 
     showQuarters(
-      bookCalendar[nb].mealTime,
+      bookCalendar[elt].mealTime,
       startHour,
       endHour,
-      bookCalendar[nb].seats != 0,
-      bookCalendar[nb].available - nbSeatsReserved > 0
+      bookCalendar[elt].seats != 0,
+      bookCalendar[elt].available - nbSeatsReserved > 0
       )      
     }    
   }
-  if (nb === 0){
-    console.log("pbbbbbbbbbbbbbbbb")
+  if (!dateFound){
+    //outside the 3 weeks reservation: close the quarters part
     quarters.style.display = "none"
+    limitDat.style.display = "block"
   }
 }
 
@@ -164,8 +178,8 @@ showQuarters = (meal, startHour, endHour, opened, availableSeats) => {
     // SHOW THE QUARTERS CORRESPONDING TO THE WEEK'S DAY
 
     // bookings stop 1 hour before Restaurant closing
-    endHour.setHours (endHour.getHours() - 1)
-    console.log("endHour = " + endHour);
+    // endHour.setHours (endHour.getHours() - 1)
+    // console.log("endHour = " + endHour);
     
     //show and update the quarters text (19:00, 19:15...)
     cpt = 1
